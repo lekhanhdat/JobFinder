@@ -12,77 +12,55 @@ const Signup = ({ navigation }) => {
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.white }}>
             <View style={{ flex: 1, marginHorizontal: 22 }}>
-                <View style={{ marginVertical: 40 }}>
+                <View style={{ marginVertical: 20 }}>
                     <Text style={{
-                        fontSize: 35,
+                        fontSize: 33,
                         fontWeight: 'bold',
-                        marginVertical: 12,
+                        marginBottom: 12,
                         color: COLORS.black
                     }}>
                         Register Account
                     </Text>
 
                     <Text style={{
-                        fontSize: 27,
+                        fontSize: 25,
                         color: COLORS.black
                     }}>Fill your details or continue with social media!</Text>
                 </View>
 
                 <View style={{ marginBottom: 22 }}>
-                    {/* <Text style={{
-                        fontSize: 16,
-                        fontWeight: 400,
-                        marginVertical: 8
-                    }}>Mobile Number</Text> */}
-
+                    
                     <View style={{
                         width: "100%",
-                        height: 48,
-                        backgroundColor: '#E6E4E6',
-                        // borderColor: 'COLORS.black',
-                        // borderWidth: 1,
+                        height: 58,
+                        backgroundColor: '#E6E4E6',                    
                         borderRadius: 8,
                         alignItems: "center",
                         flexDirection: "row",
                         justifyContent: "space-between",
-                        paddingLeft: 22
+                        paddingLeft: 22,
                     }}>
-                        {/* <TextInput
-                            placeholder='+91'
-                            placeholderTextColor={COLORS.black}
-                            keyboardType='numeric'
-                            style={{
-                                width: "12%",
-                                borderRightWidth: 1,
-                                borderLeftColor: COLORS.grey,
-                                height: "100%"
-                            }}
-                        /> */}
+                        
 
                         <TextInput
                             placeholder='Full Name'
                             placeholderTextColor={COLORS.textcolor}
-                            keyboardType='numeric'
+                            keyboardType='email-address'                            
                             style={{
-                                width: "80%",                                
+                                width: "80%",
+                                fontSize: 20,                                
                             }}
                         />
                     </View>
                 </View>
 
                 <View style={{ marginBottom: 22 }}>
-                    {/* <Text style={{
-                        fontSize: 16,
-                        fontWeight: 400,
-                        marginVertical: 8
-                    }}>Email address</Text> */}
+                    
 
                     <View style={{
                         width: "100%",
-                        height: 48,
-                        backgroundColor: '#E6E4E6',
-                        // borderColor: 'COLORS.black',
-                        // borderWidth: 1,
+                        height: 58,
+                        backgroundColor: '#E6E4E6',                        
                         borderRadius: 8,
                         alignItems: "center",
                         justifyContent: "center",
@@ -93,7 +71,8 @@ const Signup = ({ navigation }) => {
                             placeholderTextColor={COLORS.textcolor}
                             keyboardType='email-address'
                             style={{
-                                width: "100%"
+                                width: "100%",
+                                fontSize: 20,
                             }}
                         />
                     </View>
@@ -102,18 +81,12 @@ const Signup = ({ navigation }) => {
                 
 
                 <View style={{ marginBottom: 22 }}>
-                    {/* <Text style={{
-                        fontSize: 16,
-                        fontWeight: 400,
-                        marginVertical: 8
-                    }}>Password</Text> */}
+                    
 
                     <View style={{
                         width: "100%",
-                        height: 48,
-                        backgroundColor: '#E6E4E6',
-                        // borderColor: 'COLORS.black',
-                        // borderWidth: 1,
+                        height: 58,
+                        backgroundColor: '#E6E4E6',                        
                         borderRadius: 8,
                         alignItems: "center",
                         justifyContent: "center",
@@ -124,7 +97,8 @@ const Signup = ({ navigation }) => {
                             placeholderTextColor={COLORS.textcolor}
                             secureTextEntry={isPasswordShown}
                             style={{
-                                width: "100%"
+                                width: "100%",
+                                fontSize: 20,
                             }}
                         />
 
@@ -148,18 +122,12 @@ const Signup = ({ navigation }) => {
                 </View>
 
                 <View style={{  }}>
-                    {/* <Text style={{
-                        fontSize: 16,
-                        fontWeight: 400,
-                        marginVertical: 8
-                    }}>Password</Text> */}
+                    
 
                     <View style={{
                         width: "100%",
-                        height: 48,
+                        height: 58,
                         backgroundColor: '#E6E4E6',
-                        // borderColor: 'COLORS.black',
-                        // borderWidth: 1,
                         borderRadius: 8,
                         alignItems: "center",
                         justifyContent: "center",
@@ -170,7 +138,8 @@ const Signup = ({ navigation }) => {
                             placeholderTextColor={COLORS.textcolor}
                             secureTextEntry={isPasswordShown}
                             style={{
-                                width: "100%"
+                                width: "100%",
+                                fontSize: 20,
                             }}
                         />
 
@@ -197,7 +166,7 @@ const Signup = ({ navigation }) => {
                     flexDirection: 'row',
                     // marginVertical: 6,
                     marginLeft: 10,
-                    marginTop: 5,                    
+                    marginTop: 10,                    
                 }}>        
                     <Text>At least 8 characters</Text>
                 </View>
@@ -211,20 +180,7 @@ const Signup = ({ navigation }) => {
                     <Text>Use a mix of letters, number and special characters (ex: @,#,...)</Text>
                 </View>
 
-                {/* <View style={{
-                    flexDirection: 'row',
-                    marginVertical: 6,
-                    marginTop: 10,
-                }}>
-                    <Checkbox
-                        style={{ marginRight: 8 }}
-                        value={isChecked}
-                        onValueChange={setIsChecked}
-                        color={isChecked ? COLORS.primary : undefined}
-                    />
-
-                    <Text>I agree to the terms and conditions</Text>
-                </View> */}
+                
 
                 <Button
                     title="Sign Up"

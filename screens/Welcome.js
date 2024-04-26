@@ -59,11 +59,7 @@ const Welcome = ({ navigation }) => {
                                 fontSize: 18,
                                 color: COLORS.black,
                                 marginBottom: 4
-                            }}>Finding your dream job is now much easier</Text>
-                            <Text style={{
-                                fontSize: 18,
-                                color: COLORS.black,
-                            }}>and faster like never before!</Text>
+                            }}>Finding your dream job is now much easier and faster like never before!</Text>                            
                         </View>                   
                     </View>
 
@@ -75,7 +71,7 @@ const Welcome = ({ navigation }) => {
                         style={{
                             backgroundColor: COLORS.maugach,
                             borderColor: 'transparent',
-                            marginTop: 22,
+                            marginTop: 2,
                             width: "100%"
                         }}
                     />
@@ -109,67 +105,3 @@ const Welcome = ({ navigation }) => {
 }
 
 export default Welcome
-
-
-
-
-                {/* <View style={{
-                    paddingHorizontal: 22,
-                    position: "absolute",
-                    top: 100,
-                    width: "100%"
-                }}>
-                    <Text style={{
-                        fontSize: 30,
-                        fontWeight: 800,
-                        color: COLORS.black
-                    }}>Finding a perfect job</Text>
-                    
-
-                    <View style={{ marginVertical: 22 }}>
-                        <Text style={{
-                            fontSize: 16,
-                            color: COLORS.black,
-                            marginVertical: 4
-                        }}>Finding your dream job is now much easier</Text>
-                        <Text style={{
-                            fontSize: 16,
-                            color: COLORS.black,
-                        }}>and faster like never before</Text>
-                    </View>                    
-
-                </View> */}
-
-
-                //  <Button
-                //         title="Let’s Get Started"
-                //         filled
-                //         onPress={() => navigation.navigate("Signup")}
-                //         style={{
-                //             backgroundColor: COLORS.maugach,
-                //             borderColor: 'transparent',
-                //             marginTop: 22,
-                //             width: "100%"
-                //         }}
-                //     />
-
-                //     <View style={{
-                //         flexDirection: "row",
-                //         marginTop: 12,
-                //         justifyContent: "center"
-                //     }}>
-                //         <Text style={{
-                //             fontSize: 16,
-                //             color: COLORS.black
-                //         }}>Already have an account?</Text>
-                //         <Pressable
-                //             onPress={() => navigation.navigate("Login")}
-                //         >
-                //             <Text style={{
-                //                 fontSize: 16,
-                //                 color: COLORS.black,
-                //                 fontWeight: "bold",
-                //                 marginLeft: 4
-                //             }}>Login</Text>
-                //         </Pressable>
-                //     </View>

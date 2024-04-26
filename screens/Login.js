@@ -14,12 +14,7 @@ const Login = ({ navigation }) => {
         <SafeAreaView style={{ flex: 1, backgroundColor: '#FAFAFA' }}>
             <View style={{ flex: 1, marginHorizontal: 22 }}>
                 <View style={{ marginTop: 10, alignItems: 'center'  }}>
-                    <Text style={{
-                        fontSize: 30,
-                        fontWeight: 'bold',
-                        // marginVertical: 12,
-                        color: COLORS.black
-                    }}>
+                    <Text style={{ fontSize: 30, fontWeight: 'bold', color: COLORS.black }}>
                         Sign In 👋
                     </Text>
 
@@ -41,59 +36,60 @@ const Login = ({ navigation }) => {
                 </View>
 
 
-                <View style={{ marginBottom: 22 }}>
-                    {/* <Text style={{
-                        fontSize: 16,
-                        fontWeight: 400,
-                        marginVertical: 8
-                    }}>Email address</Text> */}
+                <View style={{ marginBottom: 18 }}>
+                    
+
+                    <View style={{
+                        flexDirection: 'row',
+                        // marginVertical: 6,
+                        marginLeft: 160,
+                        marginBottom: 10,                    
+                    }}>        
+                        <Text style={{ color: '#83829A' }}>Don’t have account? <Text style={{ color: '#FF7754' }}>Sign up</Text></Text>
+                    </View>
+
+
 
                     <View style={{
                         width: "100%",
-                        height: 48,
+                        height: 54,
                         backgroundColor: '#E6E4E6',
-                        // borderColor: 'COLORS.black',
-                        // borderWidth: 1,
                         borderRadius: 8,
                         alignItems: "center",
                         justifyContent: "center",
                         paddingLeft: 22
                     }}>
                         <TextInput
-                            placeholder='Enter your email address'
+                            placeholder='Your email address'
                             placeholderTextColor={COLORS.textcolor}
                             keyboardType='email-address'
                             style={{
-                                width: "100%"
+                                width: "100%",
+                                fontSize: 19,
                             }}
                         />
                     </View>
                 </View>
 
-                <View style={{ marginBottom: 12 }}>
-                    {/* <Text style={{
-                        fontSize: 16,
-                        fontWeight: 400,
-                        marginVertical: 8
-                    }}>Password</Text> */}
+                <View style={{ marginBottom: 10 }}>
+                    
 
                     <View style={{
                         width: "100%",
-                        height: 48,
+                        height: 54,
                         backgroundColor: '#E6E4E6',
-                        // borderColor: 'COLORS.black',
-                        // borderWidth: 1,
                         borderRadius: 8,
                         alignItems: "center",
                         justifyContent: "center",
                         paddingLeft: 22
                     }}>
                         <TextInput
-                            placeholder='Enter your password'
+                            placeholder='Your password'
                             placeholderTextColor={COLORS.textcolor}
                             secureTextEntry={isPasswordShown}
                             style={{
-                                width: "100%"
+                                width: "100%",
+                                fontSize: 19,
                             }}
                         />
 
@@ -136,12 +132,12 @@ const Login = ({ navigation }) => {
                     style={{
                         backgroundColor: COLORS.maugach,
                         borderColor: 'transparent',
-                        marginTop: 18,
+                        marginTop: 10,
                         marginBottom: 4,
                     }}
                 />
 
-                <View style={{ flexDirection: 'row', alignItems: 'center', marginVertical: 20 }}>
+                <View style={{ flexDirection: 'row', alignItems: 'center', marginVertical: 15 }}>
                     <View
                         style={{
                             flex: 1,
