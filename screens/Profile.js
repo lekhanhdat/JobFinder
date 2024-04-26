@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View, Image } from 'react-native'
 import React from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import COLORS from '../constants/colors'
+import COLORS from '../constants/colors';
 
 const Profile = () => {
   return (
@@ -43,7 +43,7 @@ const Profile = () => {
                         color: COLORS.black,
                         marginBottom: 4
                         }}>
-                          User's name
+                          User name
                       </Text>     
 
                       <Text style={{
@@ -51,7 +51,7 @@ const Profile = () => {
                         color: '#83829A',
                         marginBottom: 12
                         }}>
-                          User's mail
+                          User mail
                       </Text>                         
 
                       <Text style={{
@@ -114,7 +114,4 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
   },
-
-
-
 })
