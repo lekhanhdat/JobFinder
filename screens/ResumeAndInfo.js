@@ -1,9 +1,11 @@
+import React, { useState } from 'react';
 import { SafeAreaView} from "react-native-safe-area-context"
-import { ScrollView, StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native'
+import { ScrollView, StyleSheet, Text, View, Image, TouchableOpacity, TextInput } from 'react-native'
 import BackButton from "../buttons/BackButton";
 import { Feather } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 import COLORS from "../constants/colors";
+import { useNavigation } from '@react-navigation/native';
 
 const ListExperience = ({job, company, time, onPress }) => {
     return (
@@ -44,6 +46,27 @@ const ListSkill = ({skill}) => {
 };
 
 const ResumeAndInfo = () => {
+    const [editing, setEditing] = useState(false);
+    const [content, setContent] = useState("Hi, I’m users, a web designer with 3 year experience..."); // Nội dung ban đầu
+
+    const handleEditPress = () => {
+        setEditing(true);
+    };
+
+    const handleSavePress = () => {
+        setEditing(false);
+    };
+
+    const navigation = useNavigation();
+    const AddExperience = () => {
+        navigation.navigate('AddExperience');
+    };
+
+    const ChangeExperience = () => {
+        navigation.navigate('ChangeExperience');
+    };
+    
+
     return(
         <SafeAreaView>
             <BackButton></BackButton>
@@ -61,18 +84,35 @@ const ResumeAndInfo = () => {
                 <View style={styles.resume_container}>
                     <View style={{flexDirection: 'row', justifyItems: 'center'}}>
                         <Text style={{flex:1, fontSize:18, marginBottom:10}}>About me</Text>
-                        <Feather name="edit-3" size={20} color={COLORS.maugach} />
                     </View>
-                    <Text style={{color:COLORS.hidetitle}}>Hi, I’m users, a web designer with 3 year experience...</Text>
+                    {editing ? (
+                        <View>
+                            <TextInput
+                                style={{ fontSize: 15 }}
+                                multiline
+                                value={content}
+                                onChangeText={setContent}
+                            />
+                            <TouchableOpacity onPress={handleSavePress}>
+                                <Text style={{color:COLORS.maugach}}>Save</Text>
+                            </TouchableOpacity>
+                        </View>
+                    ) : (
+                        <TouchableOpacity onPress={handleEditPress}>
+                            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                                <Text style={{ flex: 1, fontSize: 15, marginBottom: 10, color:COLORS.hidetitle }}>{content}</Text>
+                            </View>
+                        </TouchableOpacity>
+                    )}
                 </View>
                 <View style={styles.resume_container}>
                     <View style={{flexDirection: 'row', justifyItems: 'center'}}>
                         <Text style={{flex:1, fontSize:18, marginBottom:10}}>Experience</Text>
-                        <MaterialIcons name="add" size={24} color={COLORS.maugach} />
+                        <MaterialIcons name="add" size={24} color={COLORS.maugach} onPress={AddExperience}/>
                     </View>
                     <View style={styles.listExperience}>
-                        <ListExperience job="UX/UI" company="Facebook" time="Jan 2018 - 3 year 8 month" />
-                        <ListExperience job="UX/UI" company="Facebook" time="Jan 2018 - 3 year 8 month" />
+                        <ListExperience job="UX/UI" company="Facebook" time="Jan 2018 - 3 year 8 month" onPress={ChangeExperience}/>
+                        <ListExperience job="UX/UI" company="Facebook" time="Jan 2018 - 3 year 8 month" onPress={ChangeExperience}/>
                     </View>      
                 </View>
                 <View style={styles.skill_container}>

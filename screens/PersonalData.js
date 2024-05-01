@@ -70,7 +70,7 @@ const PersonalData = () => {
                     <Text style={styles.title}>Birthday</Text>
                     <View style={styles.inputContainer}>
                         <View>
-                            <Text style={{ fontSize: 15, paddingBottom: 3, paddingTop: 5 }}>{displayDate || 'Chọn ngày tháng'}</Text>
+                            <Text style={{ fontSize: 15, paddingBottom: 3, paddingTop: 5 }}>{displayDate || 'DD/MM/YYYY'}</Text>
                         </View>
                     </View>
                 </View>

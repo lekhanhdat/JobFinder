@@ -13,6 +13,8 @@ import EmptyNotify from './screens/EmptyNotify';
 import PersonalData from './screens/PersonalData';
 import ResumeAndInfo from './screens/ResumeAndInfo';
 import Settings from './screens/Settings';
+import AddExperience from './screens/AddExperience';
+import ChangeExperience from './screens/ChangeExperience';
 
 enableScreens();
 
@@ -27,6 +29,8 @@ const ProfileStack = () => (
     <Stack.Screen name="PersonalData" component={PersonalData} />
     <Stack.Screen name="ResumeAndInfo" component={ResumeAndInfo} />
     <Stack.Screen name="Settings" component={Settings} />
+    <Stack.Screen name="AddExperience" component={AddExperience} />
+    <Stack.Screen name="ChangeExperience" component={ChangeExperience} />
   </Stack.Navigator>
 );
 
