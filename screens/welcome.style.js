@@ -1,10 +1,31 @@
 import { StyleSheet } from "react-native";
 
-import { COLORS, FONT, SIZES } from "../../../constants";
+import { COLORS, FONT, SIZES } from "../constants";
 
 const styles = StyleSheet.create({
   container: {
     width: "100%",
+    marginHorizontal: 20,
+  },
+  head: {
+    flexDirection: 'row', // Sắp xếp các phần tử trong hàng ngang
+    justifyContent: 'space-between', // Canh giữa hai hình ảnh
+    alignItems: 'center', // Canh chỉnh theo trục dọc
+    paddingHorizontal: 20, // Thêm padding nếu cần thiết
+  },
+  menu: {
+    marginTop: 50,  
+    marginBottom: 20,  
+    width: 30, 
+    height: 30, 
+    // borderRadius: 10, 
+  },
+  avatar: {
+    marginTop: 60,  
+    marginBottom: 20, 
+    width: 60,
+    height: 60,
+    borderRadius: 20, // Để bo tròn hình ảnh
   },
   userName: {
     fontFamily: FONT.regular,
@@ -20,9 +41,10 @@ const styles = StyleSheet.create({
   searchContainer: {
     justifyContent: "center",
     alignItems: "center",
-    flexDirection: "row",
+    flexDirection: "row",    
     marginTop: SIZES.large,
     height: 50,
+    marginHorizontal: 20,
   },
   searchWrapper: {
     flex: 1,
@@ -32,6 +54,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     borderRadius: SIZES.medium,
     height: "100%",
+    backgroundColor: "#E6E4E6",
   },
   searchInput: {
     fontFamily: FONT.regular,
@@ -55,6 +78,7 @@ const styles = StyleSheet.create({
   tabsContainer: {
     width: "100%",
     marginTop: SIZES.medium,
+    paddingHorizontal: 20,
   },
   tab: (activeJobType, item) => ({
     paddingVertical: SIZES.small / 2,
