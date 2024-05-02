@@ -40,19 +40,23 @@ const PersonalData = () => {
         </View>
         <View style={styles.info_container}>
             <View style={styles.titleContainer}>
-                <Text style={styles.title}>Full name</Text>
+                <Text style={styles.title}>Full Name</Text>
                 <View style={styles.inputContainer}>
                 <TextInput
                 style={styles.input}
-                placeholder="username"
-                placeholderTextColor={COLORS.black}
+                placeholder="Username"
+                placeholderTextColor={'#83829A'}
                 />
                 </View>
             </View>
             <View style={styles.titleContainer}>
                 <Text style={styles.title}>Email Address</Text>
-                <View style={styles.inputContainer}>
-                    <Text style={{fontSize:15, paddingBottom:3, paddingTop:5}}>username@gmail.com</Text>
+                <View style={styles.inputContainer}>                    
+                    <TextInput
+                    style={styles.input}
+                    placeholder="username@gmail.com"
+                    placeholderTextColor={'#83829A'}
+                    />
                 </View>
             </View>
             <View style={styles.titleContainer}>
@@ -61,7 +65,7 @@ const PersonalData = () => {
                 <TextInput
                 style={styles.input}
                 placeholder="Da Nang"
-                placeholderTextColor={COLORS.black}
+                placeholderTextColor={'#83829A'}
                 />
                 </View>
             </View>
@@ -70,7 +74,7 @@ const PersonalData = () => {
                     <Text style={styles.title}>Birthday</Text>
                     <View style={styles.inputContainer}>
                         <View>
-                            <Text style={{ fontSize: 15, paddingBottom: 3, paddingTop: 5 }}>{displayDate || 'DD/MM/YYYY'}</Text>
+                            <Text style={{ fontSize: 15}}>{displayDate || 'DD/MM/YYYY'}</Text>
                         </View>
                     </View>
                 </View>
@@ -139,6 +143,8 @@ const styles = StyleSheet.create({
     inputContainer: {
         borderBottomWidth: 1,
         borderBottomColor: COLORS.hidetitle,
+        paddingTop: 5, 
+        paddingBottom: 5,
     },
     input: {
         fontSize: 15

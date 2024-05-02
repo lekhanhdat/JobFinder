@@ -116,7 +116,7 @@ const Profile = () => {
             color: '#b7b7b7',
             marginHorizontal: 30,
             marginTop:20
-          }}>OHTERS</Text>  
+          }}>OTHERS</Text>  
         </View>            
 
         <View style={styles.listContainer}>
