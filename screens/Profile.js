@@ -8,6 +8,7 @@ import { FontAwesome } from '@expo/vector-icons';
 import { Entypo } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
+import Policy from './PrivacyPolicy';
 
 const ListItem = ({ iconName, text, onPress }) => {
   return (
@@ -41,6 +42,15 @@ const Profile = () => {
   const Settings = () => {
     navigation.navigate('Settings'); // Điều hướng đến trang Settings
   };
+
+  const FAQ = () => {
+    navigation.navigate('FAQ'); // Điều hướng đến trang FAQ
+  };
+
+  const Policy = () => {
+    navigation.navigate('Policy'); // Điều hướng đến trang Privacy & Policy
+  };
+
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.background }}>
       <ScrollView>
@@ -121,8 +131,8 @@ const Profile = () => {
 
         <View style={styles.listContainer}>
           <ListItem iconName="settings" text="Setting" onPress={Settings}/>
-          <ListItem iconName="question-answer" text="FAQ" />
-          <ListItem iconName="privacy-tip" text="Privacy & Policy" />
+          <ListItem iconName="question-answer" text="FAQ" onPress={FAQ}/>
+          <ListItem iconName="privacy-tip" text="Privacy & Policy" onPress={Policy}/>
         </View>                               
       </ScrollView>
     </SafeAreaView>

@@ -15,6 +15,9 @@ import ResumeAndInfo from './screens/ResumeAndInfo';
 import Settings from './screens/Settings';
 import AddExperience from './screens/AddExperience';
 import ChangeExperience from './screens/ChangeExperience';
+import FAQ from './screens/FAQ';
+import Policy from './screens/PrivacyPolicy';
+
 
 
 
@@ -31,6 +34,8 @@ const ProfileStack = () => (
     <Stack.Screen name="PersonalData" component={PersonalData} />
     <Stack.Screen name="ResumeAndInfo" component={ResumeAndInfo} />
     <Stack.Screen name="Settings" component={Settings} />
+    <Stack.Screen name="FAQ" component={FAQ} />
+    <Stack.Screen name="Policy" component={Policy} />
     <Stack.Screen name="AddExperience" component={AddExperience} />
     <Stack.Screen name="ChangeExperience" component={ChangeExperience} />
   </Stack.Navigator>
