@@ -67,7 +67,7 @@ const Welcome = ({ navigation }) => {
                     <Button
                         title="Let’s Get Started"
                         filled
-                        onPress={() => navigation.navigate("Signup")}
+                        onPress={() => navigation.navigate("MainApp")}
                         style={{
                             backgroundColor: COLORS.maugach,
                             borderColor: 'transparent',

@@ -5,19 +5,9 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { enableScreens } from 'react-native-screens';
 import COLORS from "./constants/colors";
 import { FontAwesome } from '@expo/vector-icons';
-import SearchPage from "./screens/SearchPage"
-import SavedJob from "./screens/SavedJob";
-import HomePage from "./screens/HomePage";
-import Profile from "./screens/Profile";
-import EmptyNotify from './screens/EmptyNotify';
-import PersonalData from './screens/PersonalData';
-import ResumeAndInfo from './screens/ResumeAndInfo';
-import Settings from './screens/Settings';
-import AddExperience from './screens/AddExperience';
-import ChangeExperience from './screens/ChangeExperience';
-import FAQ from './screens/FAQ';
-import Policy from './screens/PrivacyPolicy';
-
+import Welcome from './screens/Welcome';
+import Login from './screens/Login';
+import MainApp from './screens/MainApp';
 
 
 
@@ -26,60 +16,22 @@ enableScreens();
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
 
-const ProfileStack = () => (
+const WelcomeStack = () => (
   <Stack.Navigator 
-    initialRouteName="Profile"
+    initialRouteName="Welcome"
     screenOptions={() => ({headerShown:false})}>
-    <Stack.Screen name="ProfileDetails" component={Profile} />
-    <Stack.Screen name="PersonalData" component={PersonalData} />
-    <Stack.Screen name="ResumeAndInfo" component={ResumeAndInfo} />
-    <Stack.Screen name="Settings" component={Settings} />
-    <Stack.Screen name="FAQ" component={FAQ} />
-    <Stack.Screen name="Policy" component={Policy} />
-    <Stack.Screen name="AddExperience" component={AddExperience} />
-    <Stack.Screen name="ChangeExperience" component={ChangeExperience} />
+    <Stack.Screen name="WelcomeStack" component={Welcome} />
+    <Stack.Screen name="Login" component={Login} />
+    <Stack.Screen name="MainApp" component={MainApp} />
   </Stack.Navigator>
 );
 
 const App = () => {
   return (
-    <NavigationContainer>
-      <Tab.Navigator
-        initialRouteName="Home"
-        screenOptions={({ route }) => ({
-          tabBarActiveTintColor: COLORS.maugach,
-          tabBarInactiveTintColor: "gray",
-          tabBarStyle: [
-            {
-              "display": "flex"
-            },
-            null
-          ],
-          headerShown: false,
-          tabBarIcon: ({ focused, color, size }) => {
-            let iconName;
-
-            if (route.name === 'Home') {
-              iconName = focused ? 'home' : 'home';
-            } else if (route.name === 'Saved Job') {
-              iconName = focused ? 'list' : 'list';
-            } else if (route.name === 'Profile') {
-              iconName = focused ? 'user' : 'user';
-            } else if (route.name === 'Search') {
-              iconName = focused ? 'search' : 'search';
-            } else if (route.name === 'Notify') {
-              iconName = focused ? 'bell' : 'bell';
-            }
-            return <FontAwesome name={iconName} size={size} color={color} />;
-          },
-        })}>
-
-        <Tab.Screen name="Search" component={SearchPage} />
-        <Tab.Screen name="Saved Job" component={SavedJob} />
-        <Tab.Screen name="Home" component={HomePage} />
-        <Tab.Screen name="Notify" component={EmptyNotify} />
-        <Tab.Screen name="Profile" component={ProfileStack} />
-      </Tab.Navigator>
+    <NavigationContainer independent={true}>
+      <Stack.Navigator>
+        <Stack.Screen name="Welcome" component={WelcomeStack} options={{headerShown: false}} />
+      </Stack.Navigator>
     </NavigationContainer>
   );
 };
