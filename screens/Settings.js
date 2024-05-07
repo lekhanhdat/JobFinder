@@ -19,7 +19,7 @@ const Settings = () => {
         <SafeAreaView>
             <BackButton></BackButton>
             <View style={{justifyContent:'center', alignItems:'center',marginTop:-5}}>
-                <Text style={{fontSize:18}}>Settings</Text>
+                <Text style={{fontSize:18, fontWeight: 'bold',}}>Settings</Text>
             </View>
             <View style={styles.container}>
                 <View style={styles.item_container}>

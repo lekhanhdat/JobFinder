@@ -28,12 +28,12 @@ const styles = StyleSheet.create({
     borderRadius: 20, // Để bo tròn hình ảnh
   },
   userName: {
-    fontFamily: FONT.regular,
+    // fontFamily: FONT.regular,
     fontSize: SIZES.large,
     color: COLORS.secondary,
   },
   welcomeMessage: {
-    fontFamily: FONT.bold,
+    // fontFamily: FONT.bold,
     fontSize: SIZES.xLarge,
     color: COLORS.primary,
     marginTop: 2,
@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#E6E4E6",
   },
   searchInput: {
-    fontFamily: FONT.regular,
+    // fontFamily: FONT.regular,
     width: "100%",
     height: "100%",
     paddingHorizontal: SIZES.medium,
@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
     borderColor: activeJobType === item ? COLORS.secondary : COLORS.gray2,
   }),
   tabText: (activeJobType, item) => ({
-    fontFamily: FONT.medium,
+    // fontFamily: FONT.medium,
     color: activeJobType === item ? COLORS.secondary : COLORS.gray2,
   }),
 });

@@ -8,7 +8,7 @@ import { FontAwesome } from '@expo/vector-icons';
 import { Entypo } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
-import Policy from './PrivacyPolicy';
+
 
 const ListItem = ({ iconName, text, onPress }) => {
   return (

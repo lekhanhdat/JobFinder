@@ -6,6 +6,7 @@ import { Ionicons } from "@expo/vector-icons";
 import Checkbox from "expo-checkbox"
 import Button from '../components/Button';
 
+
 const Login = ({ navigation }) => {
     const [isPasswordShown, setIsPasswordShown] = useState(false);
     const [isChecked, setIsChecked] = useState(false);
@@ -45,7 +46,10 @@ const Login = ({ navigation }) => {
                         marginLeft: 160,
                         marginBottom: 10,                    
                     }}>        
-                        <Text style={{ color: '#83829A' }}>Don’t have account? <Text style={{ color: '#FF7754' }}>Sign up</Text></Text>
+                        <Text style={{ color: '#83829A' }}>Don’t have account? </Text>
+                        <Pressable onPress={() => navigation.navigate("Signup")}>
+                                <Text style={{ color: '#FF7754' }}> Sign up</Text>
+                        </Pressable>
                     </View>
 
 
@@ -101,7 +105,7 @@ const Login = ({ navigation }) => {
                             }}
                         >
                             {
-                                isPasswordShown == true ? (
+                                isPasswordShown == false ? (
                                     <Ionicons name="eye-off" size={24} color={COLORS.grey} />
                                 ) : (
                                     <Ionicons name="eye" size={24} color={COLORS.grey} />
@@ -114,17 +118,22 @@ const Login = ({ navigation }) => {
 
                 <View style={{
                     flexDirection: 'row',
-                    marginVertical: 6
+                    // marginVertical: 6,
+                    marginLeft: 10,
+                    marginBottom: 10,
                 }}>
-                    <Checkbox
+                    {/* <Checkbox
                         style={{ marginRight: 8 }}
                         value={isChecked}
                         onValueChange={setIsChecked}
                         color={isChecked ? COLORS.primary : undefined}
-                    />
-
-                    <Text>Remember Me</Text>
+                    /> */}
+                    
+                    <Pressable onPress={() => navigation.navigate("ConfirmEmail")}>
+                        <Text style={{ color: '#FF7754' }}>Forgot Password?</Text>
+                    </Pressable>
                 </View>
+    
 
                 <Button
                     title="Login"
@@ -216,7 +225,7 @@ const Login = ({ navigation }) => {
                     </TouchableOpacity>
                 </View>
 
-                <View style={{
+                {/* <View style={{
                     flexDirection: "row",
                     justifyContent: "center",
                     marginVertical: 22
@@ -232,7 +241,7 @@ const Login = ({ navigation }) => {
                             marginLeft: 6
                         }}>Register</Text>
                     </Pressable>
-                </View>
+                </View> */}
             </View>
         </SafeAreaView>
     )

@@ -110,7 +110,7 @@ const Signup = ({ navigation }) => {
                             }}
                         >
                             {
-                                isPasswordShown == true ? (
+                                isPasswordShown == false ? (
                                     <Ionicons name="eye-off" size={24} color={COLORS.grey} />
                                 ) : (
                                     <Ionicons name="eye" size={24} color={COLORS.grey} />
@@ -151,7 +151,7 @@ const Signup = ({ navigation }) => {
                             }}
                         >
                             {
-                                isPasswordShown == true ? (
+                                isPasswordShown == false ? (
                                     <Ionicons name="eye-off" size={24} color={COLORS.grey} />
                                 ) : (
                                     <Ionicons name="eye" size={24} color={COLORS.grey} />
@@ -168,7 +168,7 @@ const Signup = ({ navigation }) => {
                     marginLeft: 10,
                     marginTop: 10,                    
                 }}>        
-                    <Text>At least 8 characters</Text>
+                    <Text>• At least 8 characters</Text>
                 </View>
 
                 <View style={{
@@ -177,7 +177,7 @@ const Signup = ({ navigation }) => {
                     marginLeft: 10,
                                         
                 }}>        
-                    <Text>Use a mix of letters, number and special characters (ex: @,#,...)</Text>
+                    <Text>• Use a mix of letters, number and special characters (ex: @,#,...)</Text>
                 </View>
 
                 

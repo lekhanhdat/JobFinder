@@ -8,6 +8,11 @@ import { FontAwesome } from '@expo/vector-icons';
 import Welcome from './screens/Welcome';
 import Login from './screens/Login';
 import MainApp from './screens/MainApp';
+import Signup from './screens/Signup';
+import ConfirmEmail from './screens/ConfirmEmail';
+import ConfirmCode from './screens/ConfirmCode';
+import ConfirmPassword from './screens/ConfirmPassword';
+import FAQ from './screens/FAQ';
 
 
 
@@ -22,7 +27,12 @@ const WelcomeStack = () => (
     screenOptions={() => ({headerShown:false})}>
     <Stack.Screen name="WelcomeStack" component={Welcome} />
     <Stack.Screen name="Login" component={Login} />
+    <Stack.Screen name="Signup" component={Signup} />
     <Stack.Screen name="MainApp" component={MainApp} />
+    <Stack.Screen name="ConfirmEmail" component={ConfirmEmail} />
+    <Stack.Screen name="ConfirmCode" component={ConfirmCode} />
+    <Stack.Screen name="ConfirmPassword" component={ConfirmPassword} />
+    <Stack.Screen name="FAQ" component={FAQ} />
   </Stack.Navigator>
 );
 
