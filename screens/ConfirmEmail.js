@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
       },
-      text: {
+    text: {
         color: '#FFFFFF',
         fontSize: 20,
         fontWeight: 'bold',

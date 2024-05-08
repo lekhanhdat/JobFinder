@@ -71,7 +71,7 @@ const ResumeAndInfo = () => {
         <SafeAreaView>
             <BackButton></BackButton>
             <View style={{justifyContent:'center', alignItems:'center',marginTop:-5}}>
-                <Text style={{fontSize:18}}>Resume & My Info</Text>
+                <Text style={{fontSize:20, fontWeight: 'bold',}}>Resume and Info</Text>
             </View>
             <ScrollView>
                 <View style={styles.resume_container}>

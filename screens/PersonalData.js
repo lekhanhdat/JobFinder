@@ -27,6 +27,11 @@ const PersonalData = () => {
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.background }}>
         <BackButton></BackButton>
+            <View style={{justifyContent:'center', alignItems:'center',marginTop:-5}}>
+                <Text style={{fontSize:20, fontWeight: 'bold',}}>Personal Data</Text>
+            </View>
+        
+
         <View style={styles.container}>
             <View style={styles.avatarContainer}>
                 <Image
@@ -74,7 +79,7 @@ const PersonalData = () => {
                     <Text style={styles.title}>Birthday</Text>
                     <View style={styles.inputContainer}>
                         <View>
-                            <Text style={{ fontSize: 15}}>{displayDate || 'DD/MM/YYYY'}</Text>
+                            <Text style={{ fontSize: 18}}>{displayDate || 'DD/MM/YYYY'}</Text>
                         </View>
                     </View>
                 </View>
@@ -88,6 +93,10 @@ const PersonalData = () => {
                     display="default"
                     onChange={onChange}
                 />)}
+
+            <TouchableOpacity style={styles.button}>
+                <Text style={styles.text}>Save</Text>
+            </TouchableOpacity>
         </View>
     </SafeAreaView>
   );
@@ -137,7 +146,7 @@ const styles = StyleSheet.create({
         marginTop:30
     },
     title: {
-        fontSize: 18,
+        fontSize: 20,
         color: COLORS.hidetitle
     },
     inputContainer: {
@@ -147,6 +156,20 @@ const styles = StyleSheet.create({
         paddingBottom: 5,
     },
     input: {
-        fontSize: 15
+        fontSize: 18
     },    
+    button: {
+        backgroundColor: '#FF7754',
+        marginTop: 50,
+        paddingVertical: 15,
+        paddingHorizontal: 20,
+        borderRadius: 40,
+        justifyContent: 'center',
+        alignItems: 'center',
+      },
+    text: {
+        color: '#FFFFFF',
+        fontSize: 20,
+        fontWeight: 'bold',
+      },
 })
