@@ -117,7 +117,7 @@ const Profile = () => {
         <View style={styles.listContainer}>
           <ListItem iconName="person" text="Personal Data" onPress={PersonalData} />
           <ListItem iconName="file-present" text="Resume & My Info" onPress={ResumeAndInfo}/>
-          <ListItem iconName="format-list-bulleted" text="My Application" />
+          <ListItem iconName="format-list-bulleted" text="My Application"/>
         </View>
 
         <View>

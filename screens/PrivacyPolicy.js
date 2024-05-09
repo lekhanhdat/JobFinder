@@ -43,7 +43,7 @@ const Policy = () => {
         <View style={styles.questionContainer}>
           <Text style={styles.questionText}>User privacy</Text>
           <Text style={styles.answerText}>
-          Provides information about users' privacy rights, including their rights to access, amend, and delete personal information, and how they can contact you to request to exercise those rights This.
+          Provides information about user privacy rights, including their rights to access, amend, and delete personal information, and how they can contact you to request to exercise those rights This.
           </Text>
         </View>
 
@@ -90,6 +90,7 @@ const styles = StyleSheet.create({
   },
   questionContainer: {
     marginBottom: 20,
+    marginLeft: 5,
   },
   questionText: {
     fontSize: 18,

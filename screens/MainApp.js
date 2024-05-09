@@ -15,6 +15,8 @@ import ResumeAndInfo from './ResumeAndInfo';
 import Settings from './Settings';
 import AddExperience from './AddExperience';
 import ChangeExperience from './ChangeExperience';
+import FAQ from './FAQ';
+import Policy from './PrivacyPolicy';
 
 enableScreens();
 
@@ -31,6 +33,8 @@ const ProfileStack = () => (
     <Stack.Screen name="Settings" component={Settings} />
     <Stack.Screen name="AddExperience" component={AddExperience} />
     <Stack.Screen name="ChangeExperience" component={ChangeExperience} />
+    <Stack.Screen name="FAQ" component={FAQ} />
+    <Stack.Screen name="Policy" component={Policy} />
   </Stack.Navigator>
 );
 
@@ -54,8 +58,8 @@ const MainApp = () => {
 
             if (route.name === 'Home') {
               iconName = focused ? 'home' : 'home';
-            } else if (route.name === 'Saved Job') {
-              iconName = focused ? 'list' : 'list';
+            } else if (route.name === 'Favorite') {
+              iconName = focused ? 'heart' : 'heart';
             } else if (route.name === 'Profile') {
               iconName = focused ? 'user' : 'user';
             } else if (route.name === 'Search') {
@@ -68,7 +72,7 @@ const MainApp = () => {
         })}>
 
         <Tab.Screen name="Search" component={SearchPage} />
-        <Tab.Screen name="Saved Job" component={SavedJob} />
+        <Tab.Screen name="Favorite" component={SavedJob} />
         <Tab.Screen name="Home" component={HomePage} />
         <Tab.Screen name="Notify" component={EmptyNotify} />
         <Tab.Screen name="Profile" component={ProfileStack} />

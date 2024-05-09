@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Text, View, TextInput, TouchableOpacity, Image, FlatList } from 'react-native';
+import { Text, View, TextInput, TouchableOpacity, Image, FlatList, StyleSheet} from 'react-native';
 import styles from "./welcome.style";
 import { COLORS, SIZES, icons } from '../constants';
 import { AntDesign } from '@expo/vector-icons';
