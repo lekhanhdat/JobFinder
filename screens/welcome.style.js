@@ -85,14 +85,14 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
   row: {
-    marginTop: 20,
     marginHorizontal: 20,
   },
   subrow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 10,    
+    marginTop:20,
+    marginBottom:15,
   },
   boldText: {
     fontWeight: 'bold',
@@ -116,35 +116,41 @@ const styles = StyleSheet.create({
     position: 'relative',
     width: 200,
   },
-  cardContent: {
-    flexDirection: 'row',
-    alignItems: 'flex-start',
+  logo_container:{
+    width: 60,
+    height: 60,
+    backgroundColor:'#fff',
+    borderRadius:10,
+    justifyContent:'center',
+    alignItems:'center',
   },
   companyLogo: {
     width: 50,
     height: 50,
-    marginRight: 10,
   },
   companyInfo: {
-    flex: 1,
+   marginTop:10,
   },
   companyName: {
-    fontSize: 16,
-    fontWeight: 'bold',
+    fontSize: 14,
     color: COLORS.white,
+    marginBottom: 3,
   },
   jobName: {
-    fontSize: 14,
+    fontSize: 16,
     fontWeight: 'bold',
-    marginBottom: 5,
+    marginBottom: 3,
+    color: COLORS.white,
   },
   jobDescription: {
     fontSize: 14,
+    color: COLORS.white,
   },
   heartIcon: {
     position: 'absolute',
-    top: 5,
-    right: 5,
+    top: 15,
+    right: 20,
+    color: "#ff7754",
   },
   tab: (activeJobType, item) => ({
     paddingVertical: SIZES.small / 2,
@@ -157,6 +163,38 @@ const styles = StyleSheet.create({
     // fontFamily: FONT.medium,
     color: activeJobType === item ? COLORS.secondary : COLORS.gray2,
   }),
+
+  nearby_job_container: {
+    borderRadius: 10,
+    flexDirection: 'row',
+    marginBottom:10,
+    backgroundColor: "#fafafa",
+    padding:10,
+  },
+  logo: {
+    width: 70,
+    height: 70,
+    marginRight: 20,
+    borderRadius: 50,
+  },
+  textContainer: {
+    flex:1,
+  },
+  company: {
+    fontSize: 17, 
+    marginBottom: 3, 
+    fontWeight: 'bold',  
+  },
+  jobname: {
+    fontSize: 17,
+    color: '#555555',
+    fontWeight: 'bold',
+    marginBottom: 2,
+  },
+  describe: {
+    fontSize: 15,
+    color: '#555555',
+  },
 });
 
 export default styles;

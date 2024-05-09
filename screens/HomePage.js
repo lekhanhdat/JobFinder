@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Text, View, TextInput, TouchableOpacity, Image, FlatList, StyleSheet} from 'react-native';
+import { Text, View, TextInput, TouchableOpacity, Image, FlatList, ScrollView} from 'react-native';
 import styles from "./welcome.style";
 import { COLORS, SIZES, icons } from '../constants';
 import { AntDesign } from '@expo/vector-icons';
@@ -16,7 +16,7 @@ const renderCompanyCard = ({ item }) => {
   return (
     <TouchableOpacity style={styles.companyCard}>
       <View style={styles.cardContent}>
-        <Image source={item.logo} style={styles.companyLogo} />
+        <View style={styles.logo_container}><Image source={item.logo} style={styles.companyLogo} /></View>
         <View style={styles.companyInfo}>
           <Text style={styles.companyName}>{item.name}</Text>
           <Text style={styles.jobName}>{item.job}</Text>
@@ -28,13 +28,27 @@ const renderCompanyCard = ({ item }) => {
   );
 };
 
+const Nearby_Job = ({company, jobname, describe}) => {
+  return(
+    <TouchableOpacity>
+      <View style={styles.nearby_job_container}>
+        <Image source={require("../assets/ig.png")} style={styles.logo} />
+        <View style={styles.textContainer}>
+          <Text style={styles.company}>{company}</Text>
+          <Text style={styles.jobname}>{jobname}</Text>
+          <Text style={styles.describe}>{describe}</Text>
+        </View>
+      </View>
+    </TouchableOpacity>
+  );
+};
+
 
 const HomePage = ({ searchTerm, setSearchTerm, handleClick }) => {
   const [activeJobType, setActiveJobType] = useState("Full-time");
 
   return (
-    <View>
-
+    <ScrollView>
       <View style={styles.head}>          
           <Image
             style={styles.menu}
@@ -46,8 +60,6 @@ const HomePage = ({ searchTerm, setSearchTerm, handleClick }) => {
             source={require('../assets/avatar.png')} 
           />
       </View>
-
-
       <View style={styles.container}>
         <Text style={styles.userName}>Hello Dat 👋</Text>
         <Text style={styles.welcomeMessage}>Find your perfect job 🚀</Text>
@@ -72,9 +84,7 @@ const HomePage = ({ searchTerm, setSearchTerm, handleClick }) => {
         </TouchableOpacity>
       </View>
 
-
       {/* Đoạn note dưới đây là 3 button Full time, Part time, Internship của project cũ*/}
-
       <View style={styles.tabsContainer}>
         <FlatList
           data={jobTypes}
@@ -96,30 +106,34 @@ const HomePage = ({ searchTerm, setSearchTerm, handleClick }) => {
       </View>
 
       <View style={styles.row}>
-      <View style={styles.subrow}>
-        <Text style={styles.boldText}>Popular Jobs</Text>      
-        <Text style={styles.showAll}>Show all</Text>
+        <View style={styles.subrow}>
+          <Text style={styles.boldText}>Popular Jobs</Text>      
+          <Text style={styles.showAll}>Show all</Text>
+        </View>
+
+        <View>
+        <FlatList
+          data={companies}
+          renderItem={renderCompanyCard}
+          keyExtractor={item => item.id.toString()}
+          horizontal={true}
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={styles.companyList}
+        />
+        </View>
+
+        <View style={styles.subrow}>
+          <Text style={styles.boldText}>Nearby Jobs</Text>
+          <Text style={styles.showAll}>Show all</Text>
+        </View>
+        <View>
+          <Nearby_Job company = 'Instagram' jobname = 'UI/UX Designer' describe = 'Full time - $8k' />
+          <Nearby_Job company = 'Instagram' jobname = 'UI/UX Designer' describe = 'Full time - $8k' />
+          <Nearby_Job company = 'Instagram' jobname = 'UI/UX Designer' describe = 'Full time - $8k' />
+        </View>
       </View>
 
-      <View>
-      <FlatList
-        data={companies}
-        renderItem={renderCompanyCard}
-        keyExtractor={item => item.id.toString()}
-        horizontal={true}
-        showsHorizontalScrollIndicator={false}
-        contentContainerStyle={styles.companyList}
-      />
-      </View>
-
-      <View style={styles.subrow}>
-        <Text style={styles.boldText}>Nearby Jobs</Text>
-        <Text style={styles.showAll}>Show all</Text>
-      </View>
-    </View>
-
-
-    </View>
+    </ScrollView>
   );
 }
 
