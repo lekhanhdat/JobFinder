@@ -17,6 +17,8 @@ import AddExperience from './AddExperience';
 import ChangeExperience from './ChangeExperience';
 import FAQ from './FAQ';
 import Policy from './PrivacyPolicy';
+import DescribeJob from './DescribeJob';
+
 
 enableScreens();
 
@@ -35,6 +37,15 @@ const ProfileStack = () => (
     <Stack.Screen name="ChangeExperience" component={ChangeExperience} />
     <Stack.Screen name="FAQ" component={FAQ} />
     <Stack.Screen name="Policy" component={Policy} />
+  </Stack.Navigator>
+);
+
+const HomeStack = () => (
+  <Stack.Navigator
+    initialRouteName="Home"
+    screenOptions={() => ({headerShown:false})}>
+    <Stack.Screen name="HomeDetails" component={HomePage} />
+    <Stack.Screen name="DescribeJob" component={DescribeJob} />
   </Stack.Navigator>
 );
 
@@ -73,7 +84,7 @@ const MainApp = () => {
 
         <Tab.Screen name="Search" component={SearchPage} />
         <Tab.Screen name="Favorite" component={SavedJob} />
-        <Tab.Screen name="Home" component={HomePage} />
+        <Tab.Screen name="Home" component={HomeStack} />
         <Tab.Screen name="Notify" component={EmptyNotify} />
         <Tab.Screen name="Profile" component={ProfileStack} />
       </Tab.Navigator>

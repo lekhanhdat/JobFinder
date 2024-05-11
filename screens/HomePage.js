@@ -3,6 +3,7 @@ import { Text, View, TextInput, TouchableOpacity, Image, FlatList, ScrollView} f
 import styles from "./welcome.style";
 import { COLORS, SIZES, icons } from '../constants';
 import { AntDesign } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
 
 
 const jobTypes = ["Full-time", "Part-time", "Internship"];
@@ -12,9 +13,10 @@ const companies = [
   { id: 3, name: 'Google', logo: require("../assets/google.png") },
   // Add more company here...
 ];
+
 const renderCompanyCard = ({ item }) => {
   return (
-    <TouchableOpacity style={styles.companyCard}>
+    <TouchableOpacity style={styles.companyCard} onPress={() => navigation.navigate("DescribeJob")}>
       <View style={styles.cardContent}>
         <View style={styles.logo_container}><Image source={item.logo} style={styles.companyLogo} /></View>
         <View style={styles.companyInfo}>
@@ -30,7 +32,6 @@ const renderCompanyCard = ({ item }) => {
 
 const Nearby_Job = ({company, jobname, describe}) => {
   return(
-    <TouchableOpacity>
       <View style={styles.nearby_job_container}>
         <Image source={require("../assets/ig.png")} style={styles.logo} />
         <View style={styles.textContainer}>
@@ -39,12 +40,11 @@ const Nearby_Job = ({company, jobname, describe}) => {
           <Text style={styles.describe}>{describe}</Text>
         </View>
       </View>
-    </TouchableOpacity>
   );
 };
 
 
-const HomePage = ({ searchTerm, setSearchTerm, handleClick }) => {
+const HomePage = ({ searchTerm, setSearchTerm, handleClick, navigation }) => {
   const [activeJobType, setActiveJobType] = useState("Full-time");
 
   return (
@@ -127,9 +127,15 @@ const HomePage = ({ searchTerm, setSearchTerm, handleClick }) => {
           <Text style={styles.showAll}>Show all</Text>
         </View>
         <View>
-          <Nearby_Job company = 'Instagram' jobname = 'UI/UX Designer' describe = 'Full time - $8k' />
-          <Nearby_Job company = 'Instagram' jobname = 'UI/UX Designer' describe = 'Full time - $8k' />
-          <Nearby_Job company = 'Instagram' jobname = 'UI/UX Designer' describe = 'Full time - $8k' />
+          <TouchableOpacity onPress={() => navigation.navigate("DescribeJob")}>
+            <Nearby_Job company = 'Instagram' jobname = 'UI/UX Designer' describe = 'Full time - $8k' />
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.navigate("DescribeJob")}>
+            <Nearby_Job company = 'Instagram' jobname = 'UI/UX Designer' describe = 'Full time - $8k' />
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.navigate("DescribeJob")}>
+            <Nearby_Job company = 'Instagram' jobname = 'UI/UX Designer' describe = 'Full time - $8k' />
+          </TouchableOpacity>
         </View>
       </View>
 
