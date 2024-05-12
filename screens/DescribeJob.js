@@ -5,7 +5,7 @@ import { StyleSheet, Text, View, Image,TextInput, ScrollView, TouchableOpacity }
 import COLORS from "../constants/colors";
 import { AntDesign } from '@expo/vector-icons';
 
-const DescribeJob = () => {
+const DescribeJob = ({navigation}) => {
     const [selectedTab, setSelectedTab] = useState("Company");
 
     const handleTabPress = (tab) => {
@@ -52,9 +52,11 @@ const DescribeJob = () => {
             <View style={styles.tym_area}>
                 <AntDesign name="hearto" size={30} color={COLORS.maugach} />
             </View>
-            <View style={{backgroundColor:COLORS.maugach,marginLeft:10, borderRadius: 10, flex:1, justifyContent: 'center', alignItems: 'center'}}>
+            <TouchableOpacity 
+                style={{backgroundColor:COLORS.maugach,marginLeft:10, borderRadius: 10, flex:1, justifyContent: 'center', alignItems: 'center'}}
+                onPress={() => navigation.navigate("UploadCV")}>
                 <Text style={{color:'#fff', fontSize: 18}}>Apply for jobs</Text>
-            </View>
+            </TouchableOpacity>
         </View>
     </SafeAreaView>
     );

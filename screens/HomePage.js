@@ -16,7 +16,7 @@ const companies = [
 
 const renderCompanyCard = ({ item }) => {
   return (
-    <TouchableOpacity style={styles.companyCard} onPress={() => navigation.navigate("DescribeJob")}>
+    <TouchableOpacity style={styles.companyCard}>
       <View style={styles.cardContent}>
         <View style={styles.logo_container}><Image source={item.logo} style={styles.companyLogo} /></View>
         <View style={styles.companyInfo}>

@@ -18,6 +18,8 @@ import ChangeExperience from './ChangeExperience';
 import FAQ from './FAQ';
 import Policy from './PrivacyPolicy';
 import DescribeJob from './DescribeJob';
+import UploadCV from './UploadCV';
+import UploadCVSuccess from './UploadCVSuccess';
 
 
 enableScreens();
@@ -46,6 +48,8 @@ const HomeStack = () => (
     screenOptions={() => ({headerShown:false})}>
     <Stack.Screen name="HomeDetails" component={HomePage} />
     <Stack.Screen name="DescribeJob" component={DescribeJob} />
+    <Stack.Screen name="UploadCV" component={UploadCV} />
+    <Stack.Screen name="UploadCVSuccess" component={UploadCVSuccess} />
   </Stack.Navigator>
 );
 
