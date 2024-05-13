@@ -19,7 +19,7 @@ const DescribeJob = ({navigation}) => {
             <Image style={styles.avatar} source={ require("../assets/ig.png") }></Image>
         </View>
         <View style={{justifyContent: 'center', alignItems: 'center', marginTop:15}}>
-            <Text style={{marginBottom:3, fontWeight: 500, fontSize:18}}>Product Designer</Text>
+            <Text style={{marginBottom:3, fontWeight: 800, fontSize:18}}>Product Designer</Text>
             <Text style={{marginBottom:3}}>Full time / Hai Chau, Da Nang</Text>
             <Text>Salary: $5k</Text>
         </View>

@@ -8,6 +8,7 @@ import { FontAwesome } from '@expo/vector-icons';
 import { Entypo } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
+import MyApplied from './MyApplied';
 
 
 const ListItem = ({ iconName, text, onPress }) => {
@@ -37,6 +38,10 @@ const Profile = () => {
 
   const ResumeAndInfo = () => {
     navigation.navigate('ResumeAndInfo'); // Điều hướng đến trang Resume
+  };
+
+  const MyApplied = () => {
+    navigation.navigate('MyApplied'); // Điều hướng đến trang My Application
   };
 
   const Settings = () => {
@@ -74,6 +79,7 @@ const Profile = () => {
                 fontSize: 18,
                 fontWeight: 'bold',
                 color: COLORS.black,
+                marginTop: 10,
                 marginBottom: 4
                 }}>
                   User name
@@ -110,14 +116,14 @@ const Profile = () => {
             fontSize: 18,
             color: '#b7b7b7',
             marginHorizontal: 30,
-            marginTop:90
+            marginTop: 80
           }}>ACCOUNT</Text>  
         </View>            
 
         <View style={styles.listContainer}>
           <ListItem iconName="person" text="Personal Data" onPress={PersonalData} />
           <ListItem iconName="file-present" text="Resume & My Info" onPress={ResumeAndInfo}/>
-          <ListItem iconName="format-list-bulleted" text="My Application"/>
+          <ListItem iconName="format-list-bulleted" text="My Application" onPress={MyApplied}/>
         </View>
 
         <View>
@@ -125,7 +131,7 @@ const Profile = () => {
             fontSize: 18,
             color: '#b7b7b7',
             marginHorizontal: 30,
-            marginTop:20
+            marginTop:20,
           }}>OTHERS</Text>  
         </View>            
 
@@ -181,7 +187,7 @@ const styles = StyleSheet.create({
     zIndex: 1,
   },
   listContainer: {
-    marginTop:20,
+    marginTop:10,
     justifyContent: 'center',
     paddingHorizontal: 30,
   },

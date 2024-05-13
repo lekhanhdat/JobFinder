@@ -8,9 +8,9 @@ import { useNavigation } from '@react-navigation/native';
 
 const jobTypes = ["Full-time", "Part-time", "Internship"];
 const companies = [
-  { id: 1, name: 'Google', logo: require("../assets/google.png"), job: 'Load Product Manager', description: '$8k - Hai Chau, Da Nang' },
-  { id: 2, name: 'Facebook', logo: require("../assets/facebook.png") },
-  { id: 3, name: 'Google', logo: require("../assets/google.png") },
+  { id: 1, name: 'Google', logo: require("../assets/google.png"), job: 'React-native Developer', description: '$8k - Hai Chau, Da Nang' },
+  { id: 2, name: 'Facebook', logo: require("../assets/facebook.png"), job: 'Load Product Manager', description: '$8k - Hai Chau, Da Nang'  },
+  { id: 3, name: 'Google', logo: require("../assets/google.png"), job: 'Tech Leader', description: '$8k - Hai Chau, Da Nang'  },
   // Add more company here...
 ];
 
@@ -84,7 +84,7 @@ const HomePage = ({ searchTerm, setSearchTerm, handleClick, navigation }) => {
         </TouchableOpacity>
       </View>
 
-      {/* Đoạn note dưới đây là 3 button Full time, Part time, Internship của project cũ*/}
+      
       <View style={styles.tabsContainer}>
         <FlatList
           data={jobTypes}

@@ -24,6 +24,12 @@ const UploadCVSuccess = ({navigation}) => {
                 <View style={{justifyContent: 'center', alignItems: 'center', marginTop:10, }}>
                     <Image style={{height:250, width:250}} source={require("../assets/success_cv.png")}></Image>
                 </View>
+
+                <View style={{justifyContent: 'center', alignItems: 'center'}}>
+                    <Text style={{fontWeight: 800, fontSize: 20, marginBottom: 5}}>Successful</Text>
+                    <Text style={{fontSize: 18, marginBottom: 30}}>Congratulations, your CV has been sent</Text>
+                </View>
+
                 <TouchableOpacity 
                     style={{backgroundColor:COLORS.maugach, marginLeft:30, marginRight:30, height:50, borderRadius: 20, flex:1, justifyContent: 'center', alignItems: 'center'}}
                     onPress={() => navigation.navigate("HomeDetails")}>

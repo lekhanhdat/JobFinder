@@ -20,6 +20,8 @@ import Policy from './PrivacyPolicy';
 import DescribeJob from './DescribeJob';
 import UploadCV from './UploadCV';
 import UploadCVSuccess from './UploadCVSuccess';
+import MyApplied from './MyApplied';
+
 
 
 enableScreens();
@@ -37,6 +39,7 @@ const ProfileStack = () => (
     <Stack.Screen name="Settings" component={Settings} />
     <Stack.Screen name="AddExperience" component={AddExperience} />
     <Stack.Screen name="ChangeExperience" component={ChangeExperience} />
+    <Stack.Screen name="MyApplied" component={MyApplied} />
     <Stack.Screen name="FAQ" component={FAQ} />
     <Stack.Screen name="Policy" component={Policy} />
   </Stack.Navigator>

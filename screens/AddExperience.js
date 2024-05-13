@@ -27,7 +27,7 @@ const AddExperience = () => {
         <SafeAreaView>
             <BackButton></BackButton>
             <View style={{justifyContent:'center', alignItems:'center',marginTop:-5}}>
-                <Text style={{fontSize:18}}>Add Work Experience</Text>
+                <Text style={{fontSize:18, fontWeight: 'bold'}}>Add Work Experience</Text>
             </View>
             <View style={styles.container}>
                 <View style={styles.titleContainer}>
@@ -48,7 +48,7 @@ const AddExperience = () => {
                             <Text style={styles.title}>Start date</Text>
                             <View style={styles.inputContainer}>
                                 <View>
-                                    <Text style={{ fontSize: 15, paddingBottom: 3, paddingTop: 5 }}>{displayDate || 'DD/MM/YYYY'}</Text>
+                                    <Text style={{ fontSize: 15, paddingBottom: 3, paddingTop: 5, marginLeft: 10 }}>{displayDate || 'DD/MM/YYYY'}</Text>
                                 </View>
                             </View>
                         </View>
@@ -68,7 +68,7 @@ const AddExperience = () => {
                             <Text style={styles.title}>End date</Text>
                             <View style={styles.inputContainer}>
                                 <View>
-                                    <Text style={{ fontSize: 15, paddingBottom: 3, paddingTop: 5}}>{displayDate || 'DD/MM/YYYY'}</Text>
+                                    <Text style={{ fontSize: 15, paddingBottom: 3, paddingTop: 5, marginLeft: 10}}>{displayDate || 'DD/MM/YYYY'}</Text>
                                 </View>
                             </View>
                         </View>

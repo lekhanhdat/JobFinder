@@ -13,6 +13,7 @@ import ConfirmEmail from './screens/ConfirmEmail';
 import ConfirmCode from './screens/ConfirmCode';
 import ConfirmPassword from './screens/ConfirmPassword';
 import FAQ from './screens/FAQ';
+import MyApplied from './screens/MyApplied';
 
 
 
@@ -33,6 +34,7 @@ const WelcomeStack = () => (
     <Stack.Screen name="ConfirmCode" component={ConfirmCode} />
     <Stack.Screen name="ConfirmPassword" component={ConfirmPassword} />
     <Stack.Screen name="FAQ" component={FAQ} />
+    <Stack.Screen name="MyApplied" component={MyApplied} />
   </Stack.Navigator>
 );
 
