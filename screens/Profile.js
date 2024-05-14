@@ -1,5 +1,5 @@
-import { ScrollView, StyleSheet, Text, View, Image } from 'react-native'
-import React from 'react'
+import { ScrollView, StyleSheet, Text, View, Image, Modal, Dimensions } from 'react-native'
+import React, { useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { useNavigation } from '@react-navigation/native';
 import COLORS from '../constants/colors';
@@ -8,8 +8,9 @@ import { FontAwesome } from '@expo/vector-icons';
 import { Entypo } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
-import MyApplied from './MyApplied';
-
+import * as ImagePicker from 'expo-image-picker';
+import UploadModal from './UploadModal';
+import Avatar from './Avatar';
 
 const ListItem = ({ iconName, text, onPress }) => {
   return (
@@ -56,6 +57,56 @@ const Profile = () => {
     navigation.navigate('Policy'); // Điều hướng đến trang Privacy & Policy
   };
 
+  const [modalVisible, setModalVisible] = useState(false);
+
+  const [image, setImage] = useState();
+
+  const uploadImage = async (mode) => {
+    try {
+      if(mode === "gallery"){
+        await ImagePicker.requestMediaLibraryPermissionsAsync();
+        result = await ImagePicker.launchImageLibraryAsync({
+          mediaTypes: ImagePicker.MediaTypeOptions.Images,
+          allowsEditing: true,
+          aspect: [1,1],
+          quality:1,
+        })
+      }else{
+        await ImagePicker.requestCameraPermissionsAsync();
+        result = await ImagePicker.launchCameraAsync({
+        cameraType: ImagePicker.CameraType.front,
+        allowsEditing: true,
+        aspect: [1,1],
+        quality: 1,
+      });
+      if (!result.canceled){
+        await saveImage(result.assets[0].uri);
+      }
+      }
+    }catch (error){
+      alert("Error uploading image: " + error.message);
+      setModalVisible(false);
+    }
+  };
+
+  const removeImage = async () => {
+    try {
+      saveImage(null);
+    } catch({message}){
+      alert(message);
+      setModalVisible(false);
+    }
+  }
+  
+  const saveImage = async (image) => {
+    try {
+      setImage(image);
+      setModalVisible(false);
+    }catch(error){
+      throw error;
+    }
+  };
+
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.background }}>
       <ScrollView>
@@ -65,13 +116,13 @@ const Profile = () => {
         <View style={styles.container}>
           <View style={styles.container_wrapped}>
             <View style={styles.avatarContainer}>
-              <Image
-                style={styles.avatar}
-                source={ require("../assets/avatar.png") } // Thay link_to_your_image bằng đường dẫn của ảnh đại diện của người dùng
-              />  
-              <View style={styles.cameraIconContainer}>
-                <FontAwesome name="camera" size={15} color="white" />
-              </View>                 
+              <Avatar onButtonPress={() => setModalVisible(true)} uri={image}></Avatar>
+              <UploadModal 
+                modalVisible={modalVisible} 
+                onBackPress={() => setModalVisible((false))}
+                onCameraPress={() => uploadImage()}
+                onGalleryPress={() => uploadImage("gallery")}
+                onRemovePress={() => removeImage()}></UploadModal>
             </View>
 
             <View style={{ alignItems: 'center' }}>
@@ -139,7 +190,8 @@ const Profile = () => {
           <ListItem iconName="settings" text="Setting" onPress={Settings}/>
           <ListItem iconName="question-answer" text="FAQ" onPress={FAQ}/>
           <ListItem iconName="privacy-tip" text="Privacy & Policy" onPress={Policy}/>
-        </View>                               
+        </View>
+                                  
       </ScrollView>
     </SafeAreaView>
   )
@@ -211,4 +263,5 @@ const styles = StyleSheet.create({
     fontSize:15,
     marginRight: 10,
   },
+  
 })
