@@ -13,6 +13,7 @@ import ConfirmEmail from "./screens/ConfirmEmail";
 import ConfirmCode from "./screens/ConfirmCode";
 import ConfirmPassword from "./screens/ConfirmPassword";
 import FAQ from "./screens/FAQ";
+import MyApplied from "./screens/MyApplied";
 
 import { firebase } from "./configFirebase";
 import HomePage from "./screens/HomePage";
