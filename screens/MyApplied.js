@@ -29,8 +29,8 @@ const ListItem = ({company, jobname, describe, time}) => {
           <Text style={styles.jobname}>{jobname}</Text>
           <Text style={styles.describe}>{describe}</Text>
         </View>
-        <View>
-          <AntDesign name="hearto" size={24} color="#ff7754" />
+        <View>          
+          <AntDesign name="closecircle" size={24} color="#ff7754" />
           <Text style={styles.time}>{time}</Text>
         </View>
       </View>
@@ -70,11 +70,11 @@ const MyApplied = ({ searchTerm, setSearchTerm, handleClick }) => {
 
 
         <View style={styles.container}>
-          <ListItem company = 'Instagram' jobname = 'UI/UX Designer' describe = 'Full time - $8k' time = '24h' />
-          <ListItem company = 'Instagram' jobname = 'UI/UX Designer' describe = 'Full time - $8k' time = '24h' />
-          <ListItem company = 'Instagram' jobname = 'UI/UX Designer' describe = 'Full time - $8k' time = '24h' />
-          <ListItem company = 'Instagram' jobname = 'UI/UX Designer' describe = 'Full time - $8k' time = '24h' />
-          <ListItem company = 'Instagram' jobname = 'UI/UX Designer' describe = 'Full time - $8k' time = '24h' />
+          <ListItem company = 'Instagram' jobname = 'UI/UX Designer' describe = 'Full time - $3k' time = '1h ago' />
+          <ListItem company = 'Instagram' jobname = 'Tech Leader' describe = 'Full time - $8k' time = '2h ago' />
+          <ListItem company = 'Instagram' jobname = 'Full-stack Developer' describe = 'Full time - $20k' time = '4h ago' />
+          <ListItem company = 'Instagram' jobname = 'Senior Developer' describe = 'Full time - $5k' time = '8h ago' />
+          <ListItem company = 'Instagram' jobname = 'Internship' describe = 'Part time - $1k' time = '9h ago' />
         </View>
       </ScrollView>
 

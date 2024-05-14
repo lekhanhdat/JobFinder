@@ -98,7 +98,7 @@ const Profile = () => {
                 color: COLORS.maugach,
                 fontWeight: 'bold',
                 }}>
-                  31
+                  5
               </Text> 
 
               <Text style={{

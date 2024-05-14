@@ -8,6 +8,8 @@ import { Ionicons } from '@expo/vector-icons';
 import { Octicons } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import {Picker} from '@react-native-picker/picker'
+import BackButton from '../buttons/BackButton';
+
 
 const jobTypes = ["Full-time", "Part-time", "Internship"];
 
@@ -54,12 +56,12 @@ const SearchPage = ({ searchTerm, setSearchTerm, handleClick }) => {
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      <TouchableOpacity onPress={handleBack} style={{ position: 'absolute', top: 50, left: 20, zIndex: 1 }}>
-        <Ionicons name="chevron-back" size={24} color="black" />
-      </TouchableOpacity>
-      <View style={{justifyContent:'center', alignItems:'center',marginTop:20}}>
-          <Text style={{fontSize:20, fontWeight: 'bold', marginBottom: 20}}>Search</Text>
-      </View>
+            <TouchableOpacity onPress={handleBack} style={{top: 20, left: 20, zIndex: 1 }}>
+              <Ionicons name="chevron-back" size={24} color="black" />
+            </TouchableOpacity>
+            <View style={{justifyContent:'center', alignItems:'center',marginTop:-5}}>
+                <Text style={{fontSize:20, fontWeight: 'bold',}}>Search</Text>
+            </View>
 
       <View style={styles.searchContainer}>
         <View style={styles.searchWrapper}>
@@ -114,6 +116,8 @@ const SearchPage = ({ searchTerm, setSearchTerm, handleClick }) => {
                     >
                         <Picker.Item label="Đà Nẵng" value="Đà Nẵng" />
                         <Picker.Item label="Quảng Nam" value="Quảng Nam" />
+                        <Picker.Item label="Hà Nội" value="Hà Nội" />
+                        <Picker.Item label="TP. HCM" value="TP. HCM" />
                     </Picker>
                   </View>
                 </View>
@@ -163,17 +167,17 @@ const SearchPage = ({ searchTerm, setSearchTerm, handleClick }) => {
       <ScrollView>
         <View>
           <Text style={styles.Opportunity}>
-          4 Job Opportunity
+          5 Job Opportunity
           </Text>
         </View>
 
 
         <View style={styles.container}>
-          <ListItem company = 'Instagram' jobname = 'UI/UX Designer' describe = 'Full time - $8k' time = '24h' />
-          <ListItem company = 'Instagram' jobname = 'UI/UX Designer' describe = 'Full time - $8k' time = '24h' />
-          <ListItem company = 'Instagram' jobname = 'UI/UX Designer' describe = 'Full time - $8k' time = '24h' />
-          <ListItem company = 'Instagram' jobname = 'UI/UX Designer' describe = 'Full time - $8k' time = '24h' />
-          <ListItem company = 'Instagram' jobname = 'UI/UX Designer' describe = 'Full time - $8k' time = '24h' />
+          <ListItem company = 'Instagram' jobname = 'UI/UX Designer' describe = 'Full time - $3k' time = '1h' />
+          <ListItem company = 'Instagram' jobname = 'Tech Leader' describe = 'Full time - $8k' time = '2h' />
+          <ListItem company = 'Instagram' jobname = 'Full-stack Developer' describe = 'Full time - $20k' time = '4h' />
+          <ListItem company = 'Instagram' jobname = 'Senior Developer' describe = 'Full time - $5k' time = '8h' />
+          <ListItem company = 'Instagram' jobname = 'Internship' describe = 'Part time - $1k' time = '9h' />
         </View>
       </ScrollView>
 

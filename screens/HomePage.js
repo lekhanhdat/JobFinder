@@ -55,10 +55,12 @@ const HomePage = ({ searchTerm, setSearchTerm, handleClick, navigation }) => {
             source={require('../assets/icons/menu.png')} 
           />
 
-          <Image
-            style={styles.avatar}
-            source={require('../assets/avatar.png')} 
-          />
+          <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
+            <Image
+              style={styles.avatar}
+              source={require('../assets/avatar.png')} 
+            />
+          </TouchableOpacity>
       </View>
       <View style={styles.container}>
         <Text style={styles.userName}>Hello Dat 👋</Text>
@@ -75,7 +77,7 @@ const HomePage = ({ searchTerm, setSearchTerm, handleClick, navigation }) => {
           />
         </View>
 
-        <TouchableOpacity style={styles.searchBtn} onPress={handleClick}>
+        <TouchableOpacity style={styles.searchBtn} onPress={() => navigation.navigate('SearchPage')}>
           <Image
             source={icons.search}
             resizeMode="contain"
@@ -128,13 +130,13 @@ const HomePage = ({ searchTerm, setSearchTerm, handleClick, navigation }) => {
         </View>
         <View>
           <TouchableOpacity onPress={() => navigation.navigate("DescribeJob")}>
-            <Nearby_Job company = 'Instagram' jobname = 'UI/UX Designer' describe = 'Full time - $8k' />
+            <Nearby_Job company = 'Instagram' jobname = 'UI/UX Designer' describe = 'Full time - $5k' />
           </TouchableOpacity>
           <TouchableOpacity onPress={() => navigation.navigate("DescribeJob")}>
-            <Nearby_Job company = 'Instagram' jobname = 'UI/UX Designer' describe = 'Full time - $8k' />
+            <Nearby_Job company = 'Instagram' jobname = 'Senior Developer' describe = 'Full time - $8k' />
           </TouchableOpacity>
           <TouchableOpacity onPress={() => navigation.navigate("DescribeJob")}>
-            <Nearby_Job company = 'Instagram' jobname = 'UI/UX Designer' describe = 'Full time - $8k' />
+            <Nearby_Job company = 'Instagram' jobname = 'Junior Developer' describe = 'Full time - $3k' />
           </TouchableOpacity>
         </View>
       </View>

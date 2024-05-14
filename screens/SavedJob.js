@@ -41,10 +41,12 @@ const SavedJob = () => {
         <View style={{justifyContent:'center', alignItems:'center',marginTop:-5}}>
             <Text style={{fontSize:20, fontWeight: 'bold'}}>My Favorite Job</Text>
         </View>
-        <Image
-          style={styles.avatar}
-          source={require('../assets/avatar.png')} 
-        />
+        <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
+            <Image
+              style={styles.avatar}
+              source={require('../assets/avatar.png')} 
+            />
+          </TouchableOpacity>
       </View>
       <ScrollView>
         <ListItem company = 'Instagram' jobname = 'UI/UX Designer' describe = 'Full time - $8k' />
