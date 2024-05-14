@@ -15,6 +15,7 @@ import ConfirmPassword from "./screens/ConfirmPassword";
 import FAQ from "./screens/FAQ";
 
 import { firebase } from "./configFirebase";
+import HomePage from "./screens/HomePage";
 
 enableScreens();
 
@@ -61,8 +62,8 @@ const WelcomeStack = () => {
 	}
 
 	return (
-		<Stack.Navigator>
-			<Stack.Screen name="MainApp" component={MainApp} />
+		<Stack.Navigator screenOptions={() => ({ headerShown: false })}>
+			<Stack.Screen name="HomePage" component={HomePage} />
 		</Stack.Navigator>
 	);
 };

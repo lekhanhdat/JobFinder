@@ -5,28 +5,57 @@ import {
 	Pressable,
 	TextInput,
 	TouchableOpacity,
+	Alert,
 } from "react-native";
 import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import COLORS from "../constants/colors";
 import { Ionicons } from "@expo/vector-icons";
-import Checkbox from "expo-checkbox";
 import Button from "../components/Button";
-
 import { firebase } from "../configFirebase";
 
 const Login = ({ navigation }) => {
-	const [isPasswordShown, setIsPasswordShown] = useState(false);
-	const [isChecked, setIsChecked] = useState(false);
-
+	const [isPasswordShown, setIsPasswordShown] = useState(true);
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 
-	loginUser = async (email, password) => {
-		try {
-			await firebase.auth().signInWithEmailAndPassword(email, password);
-		} catch (error) {
-			alert(error.message);
+	const validateInputs = () => {
+		const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+		if (!email) {
+			Alert.alert("Validation Error", "Email cannot be empty");
+			return false;
+		}
+		if (!emailRegex.test(email)) {
+			Alert.alert("Validation Error", "Invalid email address");
+			return false;
+		}
+		if (!password) {
+			Alert.alert("Validation Error", "Password cannot be empty");
+			return false;
+		}
+		if (password.length < 8) {
+			Alert.alert(
+				"Validation Error",
+				"Password must be at least 8 characters long"
+			);
+			return false;
+		}
+		return true;
+	};
+
+	const handleLogin = async () => {
+		if (validateInputs()) {
+			try {
+				// login success
+				await firebase
+					.auth()
+					.signInWithEmailAndPassword(email, password);
+				setEmail("");
+				setPassword("");
+			} catch (error) {
+				Alert.alert("Login Failed", "Email or Password is incorrect");
+			}
 		}
 	};
 
@@ -50,7 +79,7 @@ const Login = ({ navigation }) => {
 							color: COLORS.black,
 						}}
 					>
-						Hello again you have been missed!
+						Hello again, you have been missed!
 					</Text>
 				</View>
 
@@ -71,18 +100,18 @@ const Login = ({ navigation }) => {
 					<View
 						style={{
 							flexDirection: "row",
-							// marginVertical: 6,
-							marginLeft: 160,
+							justifyContent: "flex-end",
+							marginEnd: 10,
 							marginBottom: 10,
 						}}
 					>
 						<Text style={{ color: "#83829A" }}>
-							Don’t have account?{" "}
+							Don’t have an account?{" "}
 						</Text>
 						<Pressable
 							onPress={() => navigation.navigate("Signup")}
 						>
-							<Text style={{ color: "#FF7754" }}> Sign up</Text>
+							<Text style={{ color: "#FF7754" }}>Sign up</Text>
 						</Pressable>
 					</View>
 
@@ -160,18 +189,10 @@ const Login = ({ navigation }) => {
 				<View
 					style={{
 						flexDirection: "row",
-						// marginVertical: 6,
 						marginLeft: 10,
 						marginBottom: 10,
 					}}
 				>
-					{/* <Checkbox
-                        style={{ marginRight: 8 }}
-                        value={isChecked}
-                        onValueChange={setIsChecked}
-                        color={isChecked ? COLORS.primary : undefined}
-                    /> */}
-
 					<Pressable
 						onPress={() => navigation.navigate("ConfirmEmail")}
 					>
@@ -182,7 +203,7 @@ const Login = ({ navigation }) => {
 				</View>
 
 				<Button
-					onPress={() => loginUser(email, password)}
+					onPress={handleLogin}
 					title="Login"
 					filled
 					style={{
@@ -279,24 +300,6 @@ const Login = ({ navigation }) => {
 						<Text>Google</Text>
 					</TouchableOpacity>
 				</View>
-
-				{/* <View style={{
-                    flexDirection: "row",
-                    justifyContent: "center",
-                    marginVertical: 22
-                }}>
-                    <Text style={{ fontSize: 16, color: COLORS.black }}>Don't have an account? </Text>
-                    <Pressable
-                        onPress={() => navigation.navigate("Signup")}
-                    >
-                        <Text style={{
-                            fontSize: 16,
-                            color: COLORS.primary,
-                            fontWeight: "bold",
-                            marginLeft: 6
-                        }}>Register</Text>
-                    </Pressable>
-                </View> */}
 			</View>
 		</SafeAreaView>
 	);
