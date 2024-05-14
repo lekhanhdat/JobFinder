@@ -27,7 +27,7 @@ const ChangeExperience = () => {
         <SafeAreaView>
             <BackButton></BackButton>
             <View style={{justifyContent:'center', alignItems:'center',marginTop:-5}}>
-                <Text style={{fontSize:18}}>Add Work Experience</Text>
+                <Text style={{fontSize:18, fontWeight: 'bold'}}>Change Work Experience</Text>
             </View>
             <View style={styles.container}>
                 <View style={styles.titleContainer}>
@@ -48,7 +48,7 @@ const ChangeExperience = () => {
                             <Text style={styles.title}>Start date</Text>
                             <View style={styles.inputContainer}>
                                 <View>
-                                    <Text style={{ fontSize: 15, paddingBottom: 3, paddingTop: 5 }}>{displayDate || 'DD/MM/YYYY'}</Text>
+                                    <Text style={{ fontSize: 15, paddingBottom: 3, paddingTop: 5, marginLeft: 10  }}>{displayDate || 'DD/MM/YYYY'}</Text>
                                 </View>
                             </View>
                         </View>
@@ -68,7 +68,7 @@ const ChangeExperience = () => {
                             <Text style={styles.title}>End date</Text>
                             <View style={styles.inputContainer}>
                                 <View>
-                                    <Text style={{ fontSize: 15, paddingBottom: 3, paddingTop: 5}}>{displayDate || 'DD/MM/YYYY'}</Text>
+                                    <Text style={{ fontSize: 15, paddingBottom: 3, paddingTop: 5, marginLeft: 10 }}>{displayDate || 'DD/MM/YYYY'}</Text>
                                 </View>
                             </View>
                         </View>
@@ -84,8 +84,12 @@ const ChangeExperience = () => {
                     />)}
                 </View>
             </View>
-            <View style={{ alignItems:'center', justifyContent:'center'}}>
-                <View style={{ backgroundColor:COLORS.maugach, width:100, padding:10, marginTop:10, borderRadius:20, alignItems:'center', justifyContent:'center'}}>
+            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
+                <View style={{ backgroundColor: '#FFE7E1', width: 100, padding: 10, margin: 20, marginTop: 10, borderRadius: 20, alignItems: 'center', justifyContent: 'center' }}>
+                    <Text style={{ color: COLORS.maugach, fontSize: 18 }}>Remove</Text>
+                </View>
+                
+                <View style={{ backgroundColor: COLORS.maugach, width: 100, padding: 10, margin: 20, marginTop: 10, borderRadius: 20, alignItems: 'center', justifyContent: 'center' }}>
                     <Text style={{color:COLORS.white, fontSize:18}}>Add</Text>
                 </View>
             </View>

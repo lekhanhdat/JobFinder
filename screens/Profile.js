@@ -1,5 +1,5 @@
-import { ScrollView, StyleSheet, Text, View, Image } from 'react-native'
-import React from 'react'
+import { ScrollView, StyleSheet, Text, View, Image, Modal, Dimensions } from 'react-native'
+import React, { useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { useNavigation } from '@react-navigation/native';
 import COLORS from '../constants/colors';
@@ -8,7 +8,9 @@ import { FontAwesome } from '@expo/vector-icons';
 import { Entypo } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
-
+import * as ImagePicker from 'expo-image-picker';
+import UploadModal from './UploadModal';
+import Avatar from './Avatar';
 
 const ListItem = ({ iconName, text, onPress }) => {
   return (
@@ -39,6 +41,10 @@ const Profile = () => {
     navigation.navigate('ResumeAndInfo'); // Điều hướng đến trang Resume
   };
 
+  const MyApplied = () => {
+    navigation.navigate('MyApplied'); // Điều hướng đến trang My Application
+  };
+
   const Settings = () => {
     navigation.navigate('Settings'); // Điều hướng đến trang Settings
   };
@@ -51,6 +57,56 @@ const Profile = () => {
     navigation.navigate('Policy'); // Điều hướng đến trang Privacy & Policy
   };
 
+  const [modalVisible, setModalVisible] = useState(false);
+
+  const [image, setImage] = useState();
+
+  const uploadImage = async (mode) => {
+    try {
+      if(mode === "gallery"){
+        await ImagePicker.requestMediaLibraryPermissionsAsync();
+        result = await ImagePicker.launchImageLibraryAsync({
+          mediaTypes: ImagePicker.MediaTypeOptions.Images,
+          allowsEditing: true,
+          aspect: [1,1],
+          quality:1,
+        })
+      }else{
+        await ImagePicker.requestCameraPermissionsAsync();
+        result = await ImagePicker.launchCameraAsync({
+        cameraType: ImagePicker.CameraType.front,
+        allowsEditing: true,
+        aspect: [1,1],
+        quality: 1,
+      });
+      if (!result.canceled){
+        await saveImage(result.assets[0].uri);
+      }
+      }
+    }catch (error){
+      alert("Error uploading image: " + error.message);
+      setModalVisible(false);
+    }
+  };
+
+  const removeImage = async () => {
+    try {
+      saveImage(null);
+    } catch({message}){
+      alert(message);
+      setModalVisible(false);
+    }
+  }
+  
+  const saveImage = async (image) => {
+    try {
+      setImage(image);
+      setModalVisible(false);
+    }catch(error){
+      throw error;
+    }
+  };
+
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.background }}>
       <ScrollView>
@@ -60,13 +116,13 @@ const Profile = () => {
         <View style={styles.container}>
           <View style={styles.container_wrapped}>
             <View style={styles.avatarContainer}>
-              <Image
-                style={styles.avatar}
-                source={ require("../assets/avatar.png") } // Thay link_to_your_image bằng đường dẫn của ảnh đại diện của người dùng
-              />  
-              <View style={styles.cameraIconContainer}>
-                <FontAwesome name="camera" size={15} color="white" />
-              </View>                 
+              <Avatar onButtonPress={() => setModalVisible(true)} uri={image}></Avatar>
+              <UploadModal 
+                modalVisible={modalVisible} 
+                onBackPress={() => setModalVisible((false))}
+                onCameraPress={() => uploadImage()}
+                onGalleryPress={() => uploadImage("gallery")}
+                onRemovePress={() => removeImage()}></UploadModal>
             </View>
 
             <View style={{ alignItems: 'center' }}>
@@ -74,6 +130,7 @@ const Profile = () => {
                 fontSize: 18,
                 fontWeight: 'bold',
                 color: COLORS.black,
+                marginTop: 10,
                 marginBottom: 4
                 }}>
                   User name
@@ -92,7 +149,7 @@ const Profile = () => {
                 color: COLORS.maugach,
                 fontWeight: 'bold',
                 }}>
-                  31
+                  5
               </Text> 
 
               <Text style={{
@@ -110,14 +167,14 @@ const Profile = () => {
             fontSize: 18,
             color: '#b7b7b7',
             marginHorizontal: 30,
-            marginTop:90
+            marginTop: 80
           }}>ACCOUNT</Text>  
         </View>            
 
         <View style={styles.listContainer}>
           <ListItem iconName="person" text="Personal Data" onPress={PersonalData} />
           <ListItem iconName="file-present" text="Resume & My Info" onPress={ResumeAndInfo}/>
-          <ListItem iconName="format-list-bulleted" text="My Application"/>
+          <ListItem iconName="format-list-bulleted" text="My Application" onPress={MyApplied}/>
         </View>
 
         <View>
@@ -125,7 +182,7 @@ const Profile = () => {
             fontSize: 18,
             color: '#b7b7b7',
             marginHorizontal: 30,
-            marginTop:20
+            marginTop:20,
           }}>OTHERS</Text>  
         </View>            
 
@@ -133,7 +190,8 @@ const Profile = () => {
           <ListItem iconName="settings" text="Setting" onPress={Settings}/>
           <ListItem iconName="question-answer" text="FAQ" onPress={FAQ}/>
           <ListItem iconName="privacy-tip" text="Privacy & Policy" onPress={Policy}/>
-        </View>                               
+        </View>
+                                  
       </ScrollView>
     </SafeAreaView>
   )
@@ -181,7 +239,7 @@ const styles = StyleSheet.create({
     zIndex: 1,
   },
   listContainer: {
-    marginTop:20,
+    marginTop:10,
     justifyContent: 'center',
     paddingHorizontal: 30,
   },
@@ -205,4 +263,5 @@ const styles = StyleSheet.create({
     fontSize:15,
     marginRight: 10,
   },
+  
 })

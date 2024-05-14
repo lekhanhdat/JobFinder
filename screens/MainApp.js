@@ -18,6 +18,17 @@ import ChangeExperience from './ChangeExperience';
 import FAQ from './FAQ';
 import Policy from './PrivacyPolicy';
 import DescribeJob from './DescribeJob';
+import UploadCV from './UploadCV';
+import UploadCVSuccess from './UploadCVSuccess';
+import MyApplied from './MyApplied';
+import Welcome from './Welcome';
+import Login from './Login';
+import Signup from './Signup';
+import ConfirmCode from './ConfirmCode';
+import ConfirmEmail from './ConfirmEmail';
+import ConfirmPassword from './ConfirmPassword';
+
+
 
 
 enableScreens();
@@ -28,14 +39,22 @@ const Stack = createNativeStackNavigator();
 const ProfileStack = () => (
   <Stack.Navigator 
     initialRouteName="Profile"
-    screenOptions={() => ({headerShown:false})}>
+    screenOptions={() => ({headerShown:false})}>    
     <Stack.Screen name="ProfileDetails" component={Profile} />
     <Stack.Screen name="PersonalData" component={PersonalData} />
     <Stack.Screen name="ResumeAndInfo" component={ResumeAndInfo} />
     <Stack.Screen name="Settings" component={Settings} />
+    <Stack.Screen name="Welcome" component={Welcome} />
+    <Stack.Screen name="Login" component={Login} />
+    <Stack.Screen name="Signup" component={Signup} />
+    <Stack.Screen name="MainApp" component={MainApp} />
+    <Stack.Screen name="ConfirmEmail" component={ConfirmEmail} />
+    <Stack.Screen name="ConfirmCode" component={ConfirmCode} />
+    <Stack.Screen name="ConfirmPassword" component={ConfirmPassword} />
     <Stack.Screen name="AddExperience" component={AddExperience} />
     <Stack.Screen name="ChangeExperience" component={ChangeExperience} />
-    <Stack.Screen name="FAQ" component={FAQ} />
+    <Stack.Screen name="MyApplied" component={MyApplied} />
+    <Stack.Screen name="FAQ" component={FAQ} />    
     <Stack.Screen name="Policy" component={Policy} />
   </Stack.Navigator>
 );
@@ -45,7 +64,10 @@ const HomeStack = () => (
     initialRouteName="Home"
     screenOptions={() => ({headerShown:false})}>
     <Stack.Screen name="HomeDetails" component={HomePage} />
+    <Stack.Screen name="SearchPage" component={SearchPage} />
     <Stack.Screen name="DescribeJob" component={DescribeJob} />
+    <Stack.Screen name="UploadCV" component={UploadCV} />
+    <Stack.Screen name="UploadCVSuccess" component={UploadCVSuccess} />
   </Stack.Navigator>
 );
 

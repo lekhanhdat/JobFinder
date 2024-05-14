@@ -38,13 +38,15 @@ const SavedJob = () => {
         <TouchableOpacity onPress={handleBack} style={{ zIndex: 0 }}>
           <Ionicons name="chevron-back" size={24} color="black" />
         </TouchableOpacity>
-        <View style={{justifyContent:'center', alignItems:'center'}}>
+        <View style={{justifyContent:'center', alignItems:'center',marginTop:-5}}>
             <Text style={{fontSize:20, fontWeight: 'bold'}}>My Favorite Job</Text>
         </View>
-        <Image
-          style={styles.avatar}
-          source={require('../assets/avatar.png')} 
-        />
+        <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
+            <Image
+              style={styles.avatar}
+              source={require('../assets/avatar.png')} 
+            />
+          </TouchableOpacity>
       </View>
       <ScrollView>
         <ListItem company = 'Instagram' jobname = 'UI/UX Designer' describe = 'Full time - $8k' />
@@ -59,10 +61,10 @@ export default SavedJob;
 
 const styles = StyleSheet.create({
   top_content: {
-    margin: 20,
-    marginTop:30,
+    marginBottom: 20,
     flexDirection: 'row',
     alignItems:'center',
+    marginHorizontal: 20,
     justifyContent: 'space-between',
   },
   avatar: {

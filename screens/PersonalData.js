@@ -69,7 +69,7 @@ const PersonalData = () => {
                 <View style={styles.inputContainer}>
                 <TextInput
                 style={styles.input}
-                placeholder="Da Nang"
+                placeholder="Address"
                 placeholderTextColor={'#83829A'}
                 />
                 </View>
@@ -79,7 +79,7 @@ const PersonalData = () => {
                     <Text style={styles.title}>Birthday</Text>
                     <View style={styles.inputContainer}>
                         <View>
-                            <Text style={{ fontSize: 18}}>{displayDate || 'DD/MM/YYYY'}</Text>
+                            <Text style={{ fontSize: 18, color: '#83829A'}}>{displayDate || 'DD/MM/YYYY'}</Text>
                         </View>
                     </View>
                 </View>

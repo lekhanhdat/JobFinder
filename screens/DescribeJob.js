@@ -5,7 +5,7 @@ import { StyleSheet, Text, View, Image,TextInput, ScrollView, TouchableOpacity }
 import COLORS from "../constants/colors";
 import { AntDesign } from '@expo/vector-icons';
 
-const DescribeJob = () => {
+const DescribeJob = ({navigation}) => {
     const [selectedTab, setSelectedTab] = useState("Company");
 
     const handleTabPress = (tab) => {
@@ -19,7 +19,7 @@ const DescribeJob = () => {
             <Image style={styles.avatar} source={ require("../assets/ig.png") }></Image>
         </View>
         <View style={{justifyContent: 'center', alignItems: 'center', marginTop:15}}>
-            <Text style={{marginBottom:3, fontWeight: 500, fontSize:18}}>Product Designer</Text>
+            <Text style={{marginBottom:3, fontWeight: 800, fontSize:18}}>Product Designer</Text>
             <Text style={{marginBottom:3}}>Full time / Hai Chau, Da Nang</Text>
             <Text>Salary: $5k</Text>
         </View>
@@ -38,7 +38,7 @@ const DescribeJob = () => {
 
         {selectedTab === 'Company' && (
             <View style={[styles.content, selectedTab === 'Company' && styles.contentVisible]}>
-                <Text>Company</Text>
+                <Text>Instagram is an American photo and video sharing social networking service created by Kevin Systrom and Mike Krieger. In April 2012, Facebook acquired the service for approximately $1 billion in cash and stock. The app allows users to upload media that can be edited with filters and sorted by hashtags and geotagging. Posts can be shared publicly or with pre-approved followers. Users can browse other users' content by tags and location and see trending content. Users can like photos and follow other users to add their content to their personal feed.</Text>
             </View>
         )}
 
@@ -52,9 +52,11 @@ const DescribeJob = () => {
             <View style={styles.tym_area}>
                 <AntDesign name="hearto" size={30} color={COLORS.maugach} />
             </View>
-            <View style={{backgroundColor:COLORS.maugach,marginLeft:10, borderRadius: 10, flex:1, justifyContent: 'center', alignItems: 'center'}}>
+            <TouchableOpacity 
+                style={{backgroundColor:COLORS.maugach,marginLeft:10, borderRadius: 10, flex:1, justifyContent: 'center', alignItems: 'center'}}
+                onPress={() => navigation.navigate("UploadCV")}>
                 <Text style={{color:'#fff', fontSize: 18}}>Apply for jobs</Text>
-            </View>
+            </TouchableOpacity>
         </View>
     </SafeAreaView>
     );
@@ -84,13 +86,13 @@ const styles = StyleSheet.create({
         color:'#fff'
     },
     content: {
-        backgroundColor: '#fff',
+        backgroundColor: '#fff',        
         height: 300,
         padding: 10,
         margin: 30,
         marginTop: 20,
         marginBottom: 25,
-        display: 'none',
+        display: 'none',        
     },
     contentVisible: {
         display: 'flex',

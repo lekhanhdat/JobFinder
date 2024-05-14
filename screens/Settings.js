@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { SafeAreaView} from "react-native-safe-area-context"
 import {Picker} from '@react-native-picker/picker'
-import { ScrollView, StyleSheet, Text, View, Image, Switch} from 'react-native'
+import { ScrollView, StyleSheet, Text, View, Image, Switch, TouchableOpacity} from 'react-native'
 import BackButton from "../buttons/BackButton";
 import { Feather } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
@@ -9,11 +9,15 @@ import { AntDesign } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
 import COLORS from "../constants/colors";
+import { useNavigation } from '@react-navigation/native';
+
+
 
 const Settings = () => {
     const [selectedLanguage, setSelectedLanguage] = useState('English');
     const [isEnabled, setIsEnabled] = useState(false);
     const toggleSwitch = () => setIsEnabled(previousState => !previousState);
+    const navigation = useNavigation();
 
     return(
         <SafeAreaView>
@@ -58,23 +62,25 @@ const Settings = () => {
                         <Ionicons name="language" size={24} color={COLORS.maugach} />
                     </View>
                     <View style={{flex:1, marginLeft:10}}>
-                        <View style={{ borderWidth: 1,width: 150, height:45, borderColor:COLORS.hidetitle }}>
+                        <View style={{ borderWidth: 2,width: 150, height:60, borderColor:COLORS.hidetitle }}>
                             <Picker
                             selectedValue={selectedLanguage}
                             onValueChange={(itemValue, itemIndex) => setSelectedLanguage(itemValue)}
                             >
                                 <Picker.Item label="English" value="English" />
-                                <Picker.Item label="Việt Nam" value="Việt Nam" />
+                                <Picker.Item label="Vietnamese" value="Vietnamese" />
                             </Picker>
                         </View>
                     </View>
                 </View> 
-                <View style={styles.item_container}>
+                  
+
+                <TouchableOpacity style={styles.item_container} onPress={() => navigation.navigate("Welcome")}>
                     <View style={styles.leftSquare}>
                         <AntDesign name="logout" size={24} color={COLORS.maugach} />
                     </View>
-                    <Text style={{flex: 1, fontSize:16, marginRight: 10, marginLeft:10}}>Log out</Text>
-                </View>    
+                    <Text style={{ flex: 1, fontSize: 16, marginRight: 10, marginLeft: 10 }}>Log out</Text>
+                </TouchableOpacity>
             </View>
             
         </SafeAreaView>

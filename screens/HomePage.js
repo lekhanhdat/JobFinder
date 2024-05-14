@@ -16,44 +16,28 @@ import { firebase } from "../configFirebase";
 
 const jobTypes = ["Full-time", "Part-time", "Internship"];
 const companies = [
-	{
-		id: 1,
-		name: "Google",
-		logo: require("../assets/google.png"),
-		job: "Load Product Manager",
-		description: "$8k - Hai Chau, Da Nang",
-	},
-	{ id: 2, name: "Facebook", logo: require("../assets/facebook.png") },
-	{ id: 3, name: "Google", logo: require("../assets/google.png") },
-	// Add more company here...
+
+  { id: 1, name: 'Google', logo: require("../assets/google.png"), job: 'React-native Developer', description: '$8k - Hai Chau, Da Nang' },
+  { id: 2, name: 'Facebook', logo: require("../assets/facebook.png"), job: 'Load Product Manager', description: '$8k - Hai Chau, Da Nang'  },
+  { id: 3, name: 'Google', logo: require("../assets/google.png"), job: 'Tech Leader', description: '$8k - Hai Chau, Da Nang'  },
+  // Add more company here...
 ];
 
 const renderCompanyCard = ({ item }) => {
-	return (
-		<TouchableOpacity
-			style={styles.companyCard}
-			onPress={() => navigation.navigate("DescribeJob")}
-		>
-			<View style={styles.cardContent}>
-				<View style={styles.logo_container}>
-					<Image source={item.logo} style={styles.companyLogo} />
-				</View>
-				<View style={styles.companyInfo}>
-					<Text style={styles.companyName}>{item.name}</Text>
-					<Text style={styles.jobName}>{item.job}</Text>
-					<Text style={styles.jobDescription}>
-						{item.description}
-					</Text>
-				</View>
-			</View>
-			<AntDesign
-				name="hearto"
-				size={24}
-				color="black"
-				style={styles.heartIcon}
-			/>
-		</TouchableOpacity>
-	);
+  return (
+    <TouchableOpacity style={styles.companyCard}>
+      <View style={styles.cardContent}>
+        <View style={styles.logo_container}><Image source={item.logo} style={styles.companyLogo} /></View>
+        <View style={styles.companyInfo}>
+          <Text style={styles.companyName}>{item.name}</Text>
+          <Text style={styles.jobName}>{item.job}</Text>
+          <Text style={styles.jobDescription}>{item.description}</Text>
+        </View>
+      </View>
+      <AntDesign name="hearto" size={24} color="black" style={styles.heartIcon} />
+    </TouchableOpacity>
+  );
+
 };
 
 const Nearby_Job = ({ company, jobname, describe }) => {
@@ -83,6 +67,7 @@ const changePassword = () => {
 };
 
 const HomePage = ({ searchTerm, setSearchTerm, handleClick, navigation }) => {
+
 	const [activeJobType, setActiveJobType] = useState("Full-time");
 	const [userName, setUserName] = useState("");
 
@@ -240,5 +225,6 @@ const HomePage = ({ searchTerm, setSearchTerm, handleClick, navigation }) => {
 		</ScrollView>
 	);
 };
+
 
 export default HomePage;
