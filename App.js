@@ -63,7 +63,7 @@ const WelcomeStack = () => {
 
 	return (
 		<Stack.Navigator screenOptions={() => ({ headerShown: false })}>
-			<Stack.Screen name="HomePage" component={HomePage} />
+			<Stack.Screen name="MainApp" component={MainApp} />
 		</Stack.Navigator>
 	);
 };

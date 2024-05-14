@@ -80,7 +80,6 @@ const Signup = ({ navigation }) => {
 							.doc(firebase.auth().currentUser.uid)
 							.set({
 								email,
-								password,
 								fullName,
 							});
 					})
