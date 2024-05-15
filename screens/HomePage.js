@@ -15,7 +15,7 @@ import { useNavigation } from "@react-navigation/native";
 import { firebase } from "../configFirebase";
 
 const jobTypes = ["Full-time", "Part-time", "Internship"];
-const companies = [
+const popularjob = [
 
   { id: 1, name: 'Google', logo: require("../assets/google.png"), job: 'React-native Developer', description: '$8k - Hai Chau, Da Nang' },
   { id: 2, name: 'Facebook', logo: require("../assets/facebook.png"), job: 'Load Product Manager', description: '$8k - Hai Chau, Da Nang'  },
@@ -23,35 +23,47 @@ const companies = [
   // Add more company here...
 ];
 
-const renderCompanyCard = ({ item }) => {
-  return (
-    <TouchableOpacity style={styles.companyCard}>
-      <View style={styles.cardContent}>
-        <View style={styles.logo_container}><Image source={item.logo} style={styles.companyLogo} /></View>
-        <View style={styles.companyInfo}>
-          <Text style={styles.companyName}>{item.name}</Text>
-          <Text style={styles.jobName}>{item.job}</Text>
-          <Text style={styles.jobDescription}>{item.description}</Text>
-        </View>
-      </View>
-      <AntDesign name="hearto" size={24} color="black" style={styles.heartIcon} />
-    </TouchableOpacity>
-  );
+const nearbyjob = [
 
-};
+	{ id: 1, name: 'Instagram', logo: require("../assets/ig.png"), job: 'React-native Developer', description: '$8k - Hai Chau, Da Nang' },
+	{ id: 2, name: 'Facebook', logo: require("../assets/facebook.png"), job: 'Load Product Manager', description: '$8k - Hai Chau, Da Nang'  },
+	{ id: 3, name: 'Google', logo: require("../assets/google.png"), job: 'Tech Leader', description: '$8k - Hai Chau, Da Nang'  },
+	// Add more company here...
+  ];
 
-const Nearby_Job = ({ company, jobname, describe }) => {
+  const Nearby_Job = ({ company, onPress }) => {
 	return (
-		<View style={styles.nearby_job_container}>
-			<Image source={require("../assets/ig.png")} style={styles.logo} />
-			<View style={styles.textContainer}>
-				<Text style={styles.company}>{company}</Text>
-				<Text style={styles.jobname}>{jobname}</Text>
-				<Text style={styles.describe}>{describe}</Text>
-			</View>
+	  <TouchableOpacity onPress={onPress} style={styles.nearby_job_container}>
+		<View style={{ alignItems: 'center', justifyContent: 'center' }}>
+		  <Image source={company.logo} style={styles.logo} />
 		</View>
+		<View style={styles.textContainer}>
+		  <Text style={styles.company}>{company.name}</Text>
+		  <Text style={styles.jobname}>{company.job}</Text>
+		  <Text style={styles.describe}>{company.description}</Text>
+		</View>
+	  </TouchableOpacity>
+	);
+  };
+
+  const Popular_Job = ({ item, onPress }) => {
+	return (
+	  <TouchableOpacity onPress={onPress} style={styles.companyCard}>
+		<View style={styles.cardContent}>
+		  <View style={styles.logo_container}>
+			<Image source={item.logo} style={styles.companyLogo} />
+		  </View>
+		  <View style={styles.companyInfo}>
+			<Text style={styles.companyName}>{item.name}</Text>
+			<Text style={styles.jobName}>{item.job}</Text>
+			<Text style={styles.jobDescription}>{item.description}</Text>
+		  </View>
+		</View>
+		<AntDesign name="hearto" size={24} color="black" style={styles.heartIcon} />
+	  </TouchableOpacity>
 	);
 };
+
 
 // Change Password
 const changePassword = () => {
@@ -94,10 +106,12 @@ const HomePage = ({ searchTerm, setSearchTerm, handleClick, navigation }) => {
 					source={require("../assets/icons/menu.png")}
 				/>
 
-				<Image
-					style={styles.avatar}
-					source={require("../assets/avatar.png")}
-				/>
+				<TouchableOpacity onPress={() => navigation.navigate('Profile')}>
+					<Image
+						style={styles.avatar}
+						source={require("../assets/avatar.png")}
+					/>
+				</TouchableOpacity>
 			</View>
 			<View style={styles.container}>
 				<Text style={styles.userName}>
@@ -178,14 +192,13 @@ const HomePage = ({ searchTerm, setSearchTerm, handleClick, navigation }) => {
 				</View>
 
 				<View>
-					<FlatList
-						data={companies}
-						renderItem={renderCompanyCard}
-						keyExtractor={(item) => item.id.toString()}
-						horizontal={true}
-						showsHorizontalScrollIndicator={false}
-						contentContainerStyle={styles.companyList}
-					/>
+					<ScrollView horizontal={true} showsHorizontalScrollIndicator={false} contentContainerStyle={styles.companyList}>
+						{popularjob.map((company) => (
+						<View key={company.id} style={styles.companyCardContainer}>
+							<Popular_Job item={company} onPress={() => navigation.navigate("DescribeJob", { company })}/>
+						</View>
+						))}
+					</ScrollView>
 				</View>
 
 				<View style={styles.subrow}>
@@ -193,33 +206,9 @@ const HomePage = ({ searchTerm, setSearchTerm, handleClick, navigation }) => {
 					<Text style={styles.showAll}>Show all</Text>
 				</View>
 				<View>
-					<TouchableOpacity
-						onPress={() => navigation.navigate("DescribeJob")}
-					>
-						<Nearby_Job
-							company="Instagram"
-							jobname="UI/UX Designer"
-							describe="Full time - $8k"
-						/>
-					</TouchableOpacity>
-					<TouchableOpacity
-						onPress={() => navigation.navigate("DescribeJob")}
-					>
-						<Nearby_Job
-							company="Instagram"
-							jobname="UI/UX Designer"
-							describe="Full time - $8k"
-						/>
-					</TouchableOpacity>
-					<TouchableOpacity
-						onPress={() => navigation.navigate("DescribeJob")}
-					>
-						<Nearby_Job
-							company="Instagram"
-							jobname="UI/UX Designer"
-							describe="Full time - $8k"
-						/>
-					</TouchableOpacity>
+					{nearbyjob.map((company) => (
+					<Nearby_Job key={company.id} company={company} onPress={() => navigation.navigate("DescribeJob", { company })} />
+					))}
 				</View>
 			</View>
 		</ScrollView>

@@ -4,7 +4,8 @@ import { Feather } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 import COLORS from "../constants/colors";
 
-const UploadCV = ({navigation}) => {
+const UploadCV = ({navigation, route}) => {
+    const { company } = route.params;
     return(
         <SafeAreaView>
             <ScrollView>
@@ -14,9 +15,9 @@ const UploadCV = ({navigation}) => {
                         <Image style={styles.avatar} source={ require("../assets/ig.png") }></Image>
                     </View>
                     <View style={{justifyContent: 'center', alignItems: 'center', marginTop:15}}>
-                        <Text style={{marginBottom:3, fontWeight: 500, fontSize:18}}>Product Designer</Text>
-                        <Text style={{marginBottom:3}}>Full time / Hai Chau, Da Nang</Text>
-                        <Text>Salary: $5k</Text>
+                        <Text style={{marginBottom:3, fontWeight: 500, fontSize:18}}>{company.job}</Text>
+                        <Text style={{marginBottom:3}}>{company.description}</Text>
+                        <Text>{company.name}</Text>
                     </View>
                 </View>
                 <View style={{marginLeft:30, marginTop:40}}>
@@ -39,7 +40,7 @@ const UploadCV = ({navigation}) => {
                 </View>
                 <TouchableOpacity 
                     style={{backgroundColor:COLORS.maugach, marginLeft:30, marginRight:30, height:50, borderRadius: 20, flex:1, justifyContent: 'center', alignItems: 'center'}}
-                    onPress={() => navigation.navigate("UploadCVSuccess")}>
+                    onPress={() => navigation.navigate("UploadCVSuccess", {company})}>
                     <Text style={{color:'#fff', fontSize: 18}}>Apply for jobs</Text>
                 </TouchableOpacity>
             </ScrollView>

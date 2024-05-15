@@ -3,7 +3,8 @@ import { SafeAreaView, StyleSheet, View, Image, Text, TouchableOpacity} from "re
 import BackButton from "../buttons/BackButton";
 import COLORS from "../constants/colors";
 
-const UploadCVSuccess = ({navigation}) => {
+const UploadCVSuccess = ({navigation, route}) => {
+    const { company } = route.params;
     return(
         <SafeAreaView>
             <ScrollView>
@@ -13,16 +14,16 @@ const UploadCVSuccess = ({navigation}) => {
                         <Image style={styles.avatar} source={ require("../assets/ig.png") }></Image>
                     </View>
                     <View style={{justifyContent: 'center', alignItems: 'center', marginTop:15}}>
-                        <Text style={{marginBottom:3, fontWeight: 500, fontSize:18}}>Product Designer</Text>
-                        <Text style={{marginBottom:3}}>Full time / Hai Chau, Da Nang</Text>
-                        <Text>Salary: $5k</Text>
+                        <Text style={{marginBottom:3, fontWeight: 500, fontSize:18}}>{company.job}</Text>
+                        <Text style={{marginBottom:3}}>{company.description}</Text>
+                        <Text>{company.name}</Text>
                     </View>
                 </View>
                 <View style={styles.upload_container}>
                     <Text style={{color:COLORS.maugach}}>Show CV in here</Text>
                 </View>
-                <View style={{justifyContent: 'center', alignItems: 'center', marginTop:10, }}>
-                    <Image style={{height:250, width:250}} source={require("../assets/success_cv.png")}></Image>
+                <View style={{justifyContent: 'center', alignItems: 'center'}}>
+                    <Image style={{height:200, width:200}} source={require("../assets/success_cv.png")}></Image>
                 </View>
 
                 <View style={{justifyContent: 'center', alignItems: 'center'}}>
