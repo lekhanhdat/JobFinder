@@ -1,95 +1,105 @@
-import React from 'react';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { enableScreens } from 'react-native-screens';
-import COLORS from "../constants/colors";
-import { FontAwesome } from '@expo/vector-icons';
-import SearchPage from "./SearchPage";
-import SavedJob from "./SavedJob";
-import HomePage from "./HomePage";
-import Profile from "./Profile";
-import EmptyNotify from './EmptyNotify';
-import PersonalData from './PersonalData';
-import ResumeAndInfo from './ResumeAndInfo';
-import Settings from './Settings';
-import AddExperience from './AddExperience';
-import ChangeExperience from './ChangeExperience';
-import FAQ from './FAQ';
-import Policy from './PrivacyPolicy';
-import DescribeJob from './DescribeJob';
-
+import React, { useState, useEffect } from "react";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { enableScreens } from "react-native-screens";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import COLORS from "./constants/colors";
+import { FontAwesome } from "@expo/vector-icons";
+import Welcome from "./screens/Welcome";
+import Login from "./screens/Login";
+import MainApp from "./screens/MainApp";
+import Signup from "./screens/Signup";
+import ConfirmEmail from "./screens/ConfirmEmail";
+import ConfirmCode from "./screens/ConfirmCode";
+import ConfirmPassword from "./screens/ConfirmPassword";
+import FAQ from "./screens/FAQ";
+import MyApplied from "./screens/MyApplied";
+import { firebase } from "./configFirebase";
+import HomePage from "./screens/HomePage";
 
 enableScreens();
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
 
-const ProfileStack = () => (
-  <Stack.Navigator 
-    initialRouteName="Profile"
-    screenOptions={() => ({headerShown:false})}>
-    <Stack.Screen name="ProfileDetails" component={Profile} />
-    <Stack.Screen name="PersonalData" component={PersonalData} />
-    <Stack.Screen name="ResumeAndInfo" component={ResumeAndInfo} />
-    <Stack.Screen name="Settings" component={Settings} />
-    <Stack.Screen name="AddExperience" component={AddExperience} />
-    <Stack.Screen name="ChangeExperience" component={ChangeExperience} />
-    <Stack.Screen name="FAQ" component={FAQ} />
-    <Stack.Screen name="Policy" component={Policy} />
-  </Stack.Navigator>
-);
+const WelcomeStack = () => {
+	const [initializing, setInitializing] = useState(true);
+	const [user, setUser] = useState();
+	const [isFirstLaunch, setIsFirstLaunch] = useState(null);
 
-const HomeStack = () => (
-  <Stack.Navigator
-    initialRouteName="Home"
-    screenOptions={() => ({headerShown:false})}>
-    <Stack.Screen name="HomeDetails" component={HomePage} />
-    <Stack.Screen name="DescribeJob" component={DescribeJob} />
-  </Stack.Navigator>
-);
+	const checkFirstLaunch = async () => {
+		try {
+			const value = await AsyncStorage.getItem("isFirstLaunch");
+			if (value === null) {
+				// No value set, meaning this is the first launch
+				await AsyncStorage.setItem("isFirstLaunch", "false");
+				setIsFirstLaunch(true);
+			} else {
+				setIsFirstLaunch(false);
+			}
+		} catch (error) {
+			console.error("Error checking first launch", error);
+		}
+	};
 
-const MainApp = () => {
-  return (
-    <NavigationContainer independent={true}>
-      <Tab.Navigator
-        initialRouteName="Home"
-        screenOptions={({ route }) => ({
-          tabBarActiveTintColor: COLORS.maugach,
-          tabBarInactiveTintColor: "gray",
-          tabBarStyle: [
-            {
-              "display": "flex"
-            },
-            null
-          ],
-          headerShown: false,
-          tabBarIcon: ({ focused, color, size }) => {
-            let iconName;
+	useEffect(() => {
+		checkFirstLaunch();
+		const subscriber = firebase
+			.auth()
+			.onAuthStateChanged(onAuthStateChanged);
+		return subscriber; // unsubscribe on unmount
+	}, []);
 
-            if (route.name === 'Home') {
-              iconName = focused ? 'home' : 'home';
-            } else if (route.name === 'Favorite') {
-              iconName = focused ? 'heart' : 'heart';
-            } else if (route.name === 'Profile') {
-              iconName = focused ? 'user' : 'user';
-            } else if (route.name === 'Search') {
-              iconName = focused ? 'search' : 'search';
-            } else if (route.name === 'Notify') {
-              iconName = focused ? 'bell' : 'bell';
-            }
-            return <FontAwesome name={iconName} size={size} color={color} />;
-          },
-        })}>
+	function onAuthStateChanged(user) {
+		setUser(user);
+		if (initializing) setInitializing(false);
+	}
 
-        <Tab.Screen name="Search" component={SearchPage} />
-        <Tab.Screen name="Favorite" component={SavedJob} />
-        <Tab.Screen name="Home" component={HomeStack} />
-        <Tab.Screen name="Notify" component={EmptyNotify} />
-        <Tab.Screen name="Profile" component={ProfileStack} />
-      </Tab.Navigator>
-    </NavigationContainer>
-  );
+	if (initializing || isFirstLaunch === null) return null;
+
+	return (
+		<Stack.Navigator
+			initialRouteName={
+				!user ? (isFirstLaunch ? "Welcome" : "Login") : "MainApp"
+			}
+			screenOptions={{ headerShown: false }}
+		>
+			{!user ? (
+				<>
+					<Stack.Screen name="Welcome" component={Welcome} />
+					<Stack.Screen name="Login" component={Login} />
+					<Stack.Screen name="Signup" component={Signup} />
+					<Stack.Screen
+						name="ConfirmEmail"
+						component={ConfirmEmail}
+					/>
+					<Stack.Screen name="ConfirmCode" component={ConfirmCode} />
+					<Stack.Screen
+						name="ConfirmPassword"
+						component={ConfirmPassword}
+					/>
+					<Stack.Screen name="FAQ" component={FAQ} />
+				</>
+			) : (
+				<Stack.Screen name="MainApp" component={MainApp} />
+			)}
+		</Stack.Navigator>
+	);
 };
 
-export default MainApp;
+const App = () => {
+	return (
+		<NavigationContainer independent={true}>
+			<Stack.Navigator>
+				<Stack.Screen
+					name="WelcomeStack"
+					component={WelcomeStack}
+					options={{ headerShown: false }}
+				/>
+			</Stack.Navigator>
+		</NavigationContainer>
+	);
+};
+
+export default App;

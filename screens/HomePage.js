@@ -20,20 +20,29 @@ const companies = [
 		id: 1,
 		name: "Google",
 		logo: require("../assets/google.png"),
+		job: "React-native Developer",
+		description: "$8k - Hai Chau, Da Nang",
+	},
+	{
+		id: 2,
+		name: "Facebook",
+		logo: require("../assets/facebook.png"),
 		job: "Load Product Manager",
 		description: "$8k - Hai Chau, Da Nang",
 	},
-	{ id: 2, name: "Facebook", logo: require("../assets/facebook.png") },
-	{ id: 3, name: "Google", logo: require("../assets/google.png") },
+	{
+		id: 3,
+		name: "Google",
+		logo: require("../assets/google.png"),
+		job: "Tech Leader",
+		description: "$8k - Hai Chau, Da Nang",
+	},
 	// Add more company here...
 ];
 
 const renderCompanyCard = ({ item }) => {
 	return (
-		<TouchableOpacity
-			style={styles.companyCard}
-			onPress={() => navigation.navigate("DescribeJob")}
-		>
+		<TouchableOpacity style={styles.companyCard}>
 			<View style={styles.cardContent}>
 				<View style={styles.logo_container}>
 					<Image source={item.logo} style={styles.companyLogo} />
