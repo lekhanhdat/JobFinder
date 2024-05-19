@@ -22,13 +22,13 @@ export default StyleSheet.create({
 		fontSize: 24,
 		fontWeight: "bold",
 	},
-	welcomeMessage: {
-		fontSize: 18,
-		marginTop: 8,
-	},
 	resetPassword: {
 		fontSize: 16,
 		color: "blue",
+		marginTop: 8,
+	},
+	welcomeMessage: {
+		fontSize: 18,
 		marginTop: 8,
 	},
 });
