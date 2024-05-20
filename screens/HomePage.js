@@ -101,11 +101,9 @@ const HomePage = ({ searchTerm, setSearchTerm, handleClick, navigation }) => {
 	return (
 		<ScrollView>
 			<View style={styles.head}>
-				<Image
-					style={styles.menu}
-					source={require("../assets/icons/menu.png")}
-				/>
-
+				<Text style={styles.userName}>
+					Hello {userName.fullName} 👋
+				</Text>
 				<TouchableOpacity onPress={() => navigation.navigate('Profile')}>
 					<Image
 						style={styles.avatar}
@@ -114,27 +112,7 @@ const HomePage = ({ searchTerm, setSearchTerm, handleClick, navigation }) => {
 				</TouchableOpacity>
 			</View>
 			<View style={styles.container}>
-				<Text style={styles.userName}>
-					Hello {userName.fullName} 👋
-				</Text>
-
-				{/* Change password */}
-				<TouchableOpacity
-					onPress={() => {
-						changePassword();
-					}}
-				>
-					<Text>Change Password</Text>
-				</TouchableOpacity>
-
-				{/* Sign out */}
-				<TouchableOpacity
-					onPress={() => {
-						firebase.auth().signOut();
-					}}
-				>
-					<Text>Sign Out</Text>
-				</TouchableOpacity>
+				
 				<Text style={styles.welcomeMessage}>
 					Find your perfect job 🚀
 				</Text>

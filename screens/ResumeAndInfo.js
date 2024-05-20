@@ -4,8 +4,10 @@ import { ScrollView, StyleSheet, Text, View, Image, TouchableOpacity, TextInput,
 import BackButton from "../buttons/BackButton";
 import { Feather } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 import COLORS from "../constants/colors";
 import { useNavigation } from '@react-navigation/native';
+import * as DocumentPicker from 'expo-document-picker';
 
 const windowHeight = Dimensions.get('window').height;
 
@@ -78,6 +80,31 @@ const ResumeAndInfo = () => {
         setModalVisible(false);
     };
 
+    const [cvFile, setCvFile] = useState(null);
+
+    const handleDocumentSelection = async () => {
+        try {
+            const res = await DocumentPicker.getDocumentAsync({
+                type: "application/pdf",
+            });
+
+            const assets = res.assets;
+
+            const file = assets[0];
+
+            const pdfFile = {
+            name: file.name.split(".")[0],
+            uri: file.uri,
+            type: file.mimeType,
+            size: file.size,
+            };
+
+            setCvFile(pdfFile.name);
+        } catch (err) {
+            Alert.alert('Error', 'Failed to pick document: ' + err.message);
+        }
+    };
+
     return(
         <SafeAreaView>
             <BackButton></BackButton>
@@ -85,13 +112,27 @@ const ResumeAndInfo = () => {
                 <Text style={{fontSize:20, fontWeight: 'bold',}}>Resume and Info</Text>
             </View>
             <ScrollView>
-                <View style={styles.resume_container}>
-                    <View style={{paddingBottom:10, fontSize:18}}><Text>CV.pdf</Text></View>
+                <TouchableOpacity style={styles.resume_container} onPress={handleDocumentSelection}>
+                    <View style={{paddingBottom:10, fontSize:18}}>
+                        {cvFile ? (
+                            <>
+                                <View style={{flexDirection:'row', alignItems:'center'}}>
+                                    <MaterialCommunityIcons name="file-pdf-box" size={30} color="#b22222" />
+                                    <Text>{cvFile}</Text>
+                                </View>
+                            </>
+                            
+                        ) : (
+                            <>
+                                <Text>Upload your file here</Text>
+                            </>
+                        )}  
+                    </View>
                     <View style={{ flexDirection: 'row', alignItems: 'center'}}>
                         <Feather name="edit-3" size={24} color={COLORS.maugach} />
                         <Text style={{color:COLORS.maugach, paddingLeft:5}}>Edit resume</Text>
                     </View>
-                </View>
+                </TouchableOpacity>
                 <View style={styles.resume_container}>
                     <View style={{flexDirection: 'row', justifyItems: 'center'}}>
                         <Text style={{flex:1, fontSize:18, marginBottom:10}}>About me</Text>

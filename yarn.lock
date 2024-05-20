@@ -3946,6 +3946,11 @@ expo-dev-menu@5.0.14:
     expo-dev-menu-interface "1.8.3"
     semver "^7.5.4"
 
+expo-document-picker@~12.0.1:
+  version "12.0.1"
+  resolved "https://registry.npmjs.org/expo-document-picker/-/expo-document-picker-12.0.1.tgz"
+  integrity sha512-xkIzcQ8uHQ8QrSOM0jlemObQtxD0uE9QbLXo1mpGK5o+uh6Xp0JtYuB/6TqfoRX/q5pe2eyLYaSsCL3yWbZofw==
+
 expo-file-system@~17.0.1:
   version "17.0.1"
   resolved "https://registry.npmjs.org/expo-file-system/-/expo-file-system-17.0.1.tgz"
@@ -3985,6 +3990,11 @@ expo-linear-gradient@~13.0.2:
   resolved "https://registry.npmjs.org/expo-linear-gradient/-/expo-linear-gradient-13.0.2.tgz"
   integrity sha512-EDcILUjRKu4P1rtWcwciN6CSyGtH7Bq4ll3oTRV7h3h8oSzSilH1g6z7kTAMlacPBKvMnkkWOGzW6KtgMKEiTg==
 
+expo-mail-composer@^13.0.1:
+  version "13.0.1"
+  resolved "https://registry.npmjs.org/expo-mail-composer/-/expo-mail-composer-13.0.1.tgz"
+  integrity sha512-JmlQLS7Bk7vBf+xpdNIcG80/GzwLoFgk7ZmL4qD78CxRuolvb4jwH97nS54l6W/pKBa2TH1eUV1V8ZjKzQLf0A==
+
 expo-manifests@~0.14.0:
   version "0.14.2"
   resolved "https://registry.npmjs.org/expo-manifests/-/expo-manifests-0.14.2.tgz"
@@ -4010,6 +4020,11 @@ expo-modules-core@1.12.10:
   integrity sha512-aS4imfr7fuUtcx+j/CHuG6ohNSThyCzGRh1kKjQTDcO0/CqDO2cSFnxf7n2vpiRFgyoMFJvFFtW/zIzVXiC2Tw==
   dependencies:
     invariant "^2.2.4"
+
+expo-print@~13.0.1:
+  version "13.0.1"
+  resolved "https://registry.npmjs.org/expo-print/-/expo-print-13.0.1.tgz"
+  integrity sha512-o8LuCguGrkyC5RaWEfL5N2J0V9mfbZ3GVzLpaf3KU5RrdYzGEjoiv4xlhVVzh/++hMUqOgnIrtF7tzWYhwu/7g==
 
 expo-status-bar@~1.12.1:
   version "1.12.1"
