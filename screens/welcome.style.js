@@ -8,10 +8,11 @@ const styles = StyleSheet.create({
 		marginHorizontal: 20,
 	},
 	head: {
-		flexDirection: "row", // Sắp xếp các phần tử trong hàng ngang
-		justifyContent: "space-between", // Canh giữa hai hình ảnh
-		alignItems: "center", // Canh chỉnh theo trục dọc
-		paddingHorizontal: 20, // Thêm padding nếu cần thiết
+		flexDirection: "row",
+		justifyContent: "space-between",
+		alignItems: "center",
+		paddingHorizontal: 20,
+		marginVertical: 30,
 	},
 	menu: {
 		marginTop: 50,
@@ -21,8 +22,6 @@ const styles = StyleSheet.create({
 		// borderRadius: 10,
 	},
 	avatar: {
-		marginTop: 60,
-		marginBottom: 20,
 		width: 60,
 		height: 60,
 		borderRadius: 20, // Để bo tròn hình ảnh
@@ -30,7 +29,7 @@ const styles = StyleSheet.create({
 	userName: {
 		// fontFamily: FONT.regular,
 		fontSize: SIZES.large,
-		color: COLORS.secondary,
+		color: "#ff6347",
 		fontWeight: "bold",
 	},
 	welcomeMessage: {

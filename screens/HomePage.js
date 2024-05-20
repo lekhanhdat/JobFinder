@@ -13,6 +13,7 @@ import { COLORS, SIZES, icons } from "../constants";
 import { AntDesign } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { firebase } from "../configFirebase";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const jobTypes = ["Full-time", "Part-time", "Internship"];
 const companies = [
@@ -111,142 +112,144 @@ const HomePage = ({ searchTerm, setSearchTerm, handleClick, navigation }) => {
 	});
 
 	return (
-		<ScrollView>
-			<View style={styles.head}>
-				<Image
-					style={styles.menu}
-					source={require("../assets/icons/menu.png")}
-				/>
+		<SafeAreaView>
+			<ScrollView>
+				<View style={styles.head}>
+					<Text style={styles.userName}>
+						Hello {userName.fullName} 👋
+					</Text>
+					<TouchableOpacity
+						onPress={() => navigation.navigate("Profile")}
+					>
+						<Image
+							style={styles.avatar}
+							source={require("../assets/avatar.png")}
+						/>
+					</TouchableOpacity>
+				</View>
+				<View style={styles.container}>
+					{/* Change password */}
+					<TouchableOpacity
+						onPress={() => {
+							changePassword();
+						}}
+					>
+						<Text>Change Password</Text>
+					</TouchableOpacity>
 
-				<Image
-					style={styles.avatar}
-					source={require("../assets/avatar.png")}
-				/>
-			</View>
-			<View style={styles.container}>
-				<Text style={styles.userName}>
-					Hello {userName.fullName} 👋
-				</Text>
-
-				{/* Change password */}
-				<TouchableOpacity
-					onPress={() => {
-						changePassword();
-					}}
-				>
-					<Text>Change Password</Text>
-				</TouchableOpacity>
-
-				{/* Sign out */}
-				<TouchableOpacity
-					onPress={() => {
-						firebase.auth().signOut();
-					}}
-				>
-					<Text>Sign Out</Text>
-				</TouchableOpacity>
-				<Text style={styles.welcomeMessage}>
-					Find your perfect job 🚀
-				</Text>
-			</View>
-
-			<View style={styles.searchContainer}>
-				<View style={styles.searchWrapper}>
-					<TextInput
-						style={styles.searchInput}
-						value={searchTerm}
-						onChangeText={(text) => setSearchTerm(text)}
-						placeholder="What are you looking for?"
-					/>
+					{/* Sign out */}
+					<TouchableOpacity
+						onPress={() => {
+							firebase.auth().signOut();
+						}}
+					>
+						<Text>Sign Out</Text>
+					</TouchableOpacity>
+					<Text style={styles.welcomeMessage}>
+						Find your perfect job 🚀
+					</Text>
 				</View>
 
-				<TouchableOpacity
-					style={styles.searchBtn}
-					onPress={handleClick}
-				>
-					<Image
-						source={icons.search}
-						resizeMode="contain"
-						style={styles.searchBtnImage}
-					/>
-				</TouchableOpacity>
-			</View>
+				<View style={styles.searchContainer}>
+					<View style={styles.searchWrapper}>
+						<TextInput
+							style={styles.searchInput}
+							value={searchTerm}
+							onChangeText={(text) => setSearchTerm(text)}
+							placeholder="What are you looking for?"
+						/>
+					</View>
 
-			{/* Đoạn note dưới đây là 3 button Full time, Part time, Internship của project cũ*/}
-			<View style={styles.tabsContainer}>
-				<FlatList
-					data={jobTypes}
-					renderItem={({ item }) => (
-						<TouchableOpacity
-							style={styles.tab(activeJobType, item)}
-							onPress={() => {
-								setActiveJobType(item);
-								// router.push(`/search/${item}`);
-							}}
-						>
-							<Text style={styles.tabText(activeJobType, item)}>
-								{item}
-							</Text>
-						</TouchableOpacity>
-					)}
-					keyExtractor={(item) => item}
-					contentContainerStyle={{ columnGap: SIZES.small }}
-					horizontal
-				/>
-			</View>
-
-			<View style={styles.row}>
-				<View style={styles.subrow}>
-					<Text style={styles.boldText}>Popular Jobs</Text>
-					<Text style={styles.showAll}>Show all</Text>
+					<TouchableOpacity
+						style={styles.searchBtn}
+						onPress={handleClick}
+					>
+						<Image
+							source={icons.search}
+							resizeMode="contain"
+							style={styles.searchBtnImage}
+						/>
+					</TouchableOpacity>
 				</View>
 
-				<View>
+				{/* Đoạn note dưới đây là 3 button Full time, Part time, Internship của project cũ*/}
+				<View style={styles.tabsContainer}>
 					<FlatList
-						data={companies}
-						renderItem={renderCompanyCard}
-						keyExtractor={(item) => item.id.toString()}
-						horizontal={true}
-						showsHorizontalScrollIndicator={false}
-						contentContainerStyle={styles.companyList}
+						data={jobTypes}
+						renderItem={({ item }) => (
+							<TouchableOpacity
+								style={styles.tab(activeJobType, item)}
+								onPress={() => {
+									setActiveJobType(item);
+									// router.push(`/search/${item}`);
+								}}
+							>
+								<Text
+									style={styles.tabText(activeJobType, item)}
+								>
+									{item}
+								</Text>
+							</TouchableOpacity>
+						)}
+						keyExtractor={(item) => item}
+						contentContainerStyle={{ columnGap: SIZES.small }}
+						horizontal
 					/>
 				</View>
 
-				<View style={styles.subrow}>
-					<Text style={styles.boldText}>Nearby Jobs</Text>
-					<Text style={styles.showAll}>Show all</Text>
+				<View style={styles.row}>
+					<View style={styles.subrow}>
+						<Text style={styles.boldText}>Popular Jobs</Text>
+						<Text style={styles.showAll}>Show all</Text>
+					</View>
+
+					<View>
+						<FlatList
+							data={companies}
+							renderItem={renderCompanyCard}
+							keyExtractor={(item) => item.id.toString()}
+							horizontal={true}
+							showsHorizontalScrollIndicator={false}
+							contentContainerStyle={styles.companyList}
+						/>
+					</View>
+
+					<View style={styles.subrow}>
+						<Text style={styles.boldText}>Nearby Jobs</Text>
+						<Text style={styles.showAll}>Show all</Text>
+					</View>
+					<View>
+						<TouchableOpacity
+							onPress={() => navigation.navigate("DescribeJob")}
+						>
+							<Nearby_Job
+								company="Instagram"
+								jobname="UI/UX Designer"
+								describe="Full time - $8k"
+							/>
+						</TouchableOpacity>
+						<TouchableOpacity
+							onPress={() => navigation.navigate("DescribeJob")}
+						>
+							<Nearby_Job
+								company="Instagram"
+								jobname="UI/UX Designer"
+								describe="Full time - $8k"
+							/>
+						</TouchableOpacity>
+						<TouchableOpacity
+							onPress={() => navigation.navigate("DescribeJob")}
+						>
+							<Nearby_Job
+								company="Instagram"
+								jobname="UI/UX Designer"
+								describe="Full time - $8k"
+							/>
+						</TouchableOpacity>
+					</View>
 				</View>
-				<View>
-					<TouchableOpacity
-						onPress={() => navigation.navigate("DescribeJob")}
-					>
-						<Nearby_Job
-							company="Instagram"
-							jobname="UI/UX Designer"
-							describe="Full time - $8k"
-						/>
-					</TouchableOpacity>
-					<TouchableOpacity
-						onPress={() => navigation.navigate("DescribeJob")}
-					>
-						<Nearby_Job
-							company="Instagram"
-							jobname="UI/UX Designer"
-							describe="Full time - $8k"
-						/>
-					</TouchableOpacity>
-					<TouchableOpacity
-						onPress={() => navigation.navigate("DescribeJob")}
-					>
-						<Nearby_Job
-							company="Instagram"
-							jobname="UI/UX Designer"
-							describe="Full time - $8k"
-						/>
-					</TouchableOpacity>
-				</View>
-			</View>
-		</ScrollView>
+			</ScrollView>
+		</SafeAreaView>
 	);
 };
 
