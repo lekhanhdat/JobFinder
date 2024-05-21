@@ -12,19 +12,18 @@ import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import COLORS from "../constants/colors";
 import { Ionicons } from "@expo/vector-icons";
-import Checkbox from "expo-checkbox";
 import Button from "../components/Button";
-import { firebase } from "../configFirebase";
 
 const Signup = ({ navigation }) => {
 	const [isPasswordShown, setIsPasswordShown] = useState(true);
-	const [isChecked, setIsChecked] = useState(false);
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [fullName, setFullName] = useState("");
 	const [confirmPassword, setConfirmPassword] = useState("");
 
 	const validateInputs = () => {
+		console.log("Hello from validateInputs")
+
 		const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 		const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@#$%^&+=!]).{8,}$/;
 
@@ -51,52 +50,50 @@ const Signup = ({ navigation }) => {
 	};
 
 	const handleSignUp = () => {
-		if (validateInputs()) {
-			registerUser(email, password, fullName);
+		console.log("Hello from handleSignUp")
+		if (!validateInputs()) {
+			registerUser(email, password, confirmPassword);
 		}
 	};
 
-	registerUser = async (email, password, fullName) => {
-		await firebase
-			.auth()
-			.createUserWithEmailAndPassword(email, password)
-			.then(() => {
-				firebase
-					.auth()
-					.currentUser.sendEmailVerification({
-						handleCodeInApp: true,
-						url: "https://jobfinder-b5689.firebaseapp.com",
-					})
-					.then(() => {
-						alert("Verification email sent");
-					})
-					.catch((error) => {
-						alert(error.message);
-					})
-					.then(() => {
-						firebase
-							.firestore()
-							.collection("users")
-							.doc(firebase.auth().currentUser.uid)
-							.set({
-								email,
-								fullName,
-							});
-					})
-					.catch((error) => {
-						alert(error.message);
-					});
-			})
-			.catch((error) => {
-				alert(error.message);
+	const registerUser = async (email, password, confirmPassword) => {
+		console.log("Hello from registerUser")	
+		try {
+			const response = await fetch('http://127.0.0.1:8000/api/auth/sign-up/', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify({
+					email,
+					password,
+					password2: confirmPassword,
+				}),
 			});
+
+			console.log(response)
+		
+			const responseData = await response.json();
+	
+			if (response.ok) {
+				// Registration successful
+				Alert.alert("Registration Successful", "You can now log in.", [
+					{ text: "OK", onPress: () => navigation.navigate("Login") },
+				]);
+			} else {
+				// Registration failed
+				Alert.alert("Registration Failed", responseData.detail || "An error occurred. Please try again.");
+			}
+		} catch (error) {
+			// Handle network errors or other exceptions
+			Alert.alert("Registration Error", error.message || "An error occurred. Please try again.");
+		}
 	};
+	
 
 	return (
 		<SafeAreaView style={{ flex: 1, backgroundColor: COLORS.white }}>
-			<ScrollView
-				contentContainerStyle={{ flexGrow: 1, paddingHorizontal: 22 }}
-			>
+			<ScrollView contentContainerStyle={{ flexGrow: 1, paddingHorizontal: 22 }}>
 				<View style={{ flex: 1 }}>
 					<View style={{ marginVertical: 20 }}>
 						<Text
@@ -134,9 +131,7 @@ const Signup = ({ navigation }) => {
 							}}
 						>
 							<TextInput
-								onChangeText={(fullName) =>
-									setFullName(fullName)
-								}
+								onChangeText={(fullName) => setFullName(fullName)}
 								placeholder="Full Name"
 								placeholderTextColor={COLORS.textcolor}
 								style={{
@@ -185,9 +180,7 @@ const Signup = ({ navigation }) => {
 							}}
 						>
 							<TextInput
-								onChangeText={(password) =>
-									setPassword(password)
-								}
+								onChangeText={(password) => setPassword(password)}
 								placeholder="Password"
 								placeholderTextColor={COLORS.textcolor}
 								secureTextEntry={isPasswordShown}
@@ -198,26 +191,16 @@ const Signup = ({ navigation }) => {
 							/>
 
 							<TouchableOpacity
-								onPress={() =>
-									setIsPasswordShown(!isPasswordShown)
-								}
+								onPress={() => setIsPasswordShown(!isPasswordShown)}
 								style={{
 									position: "absolute",
 									right: 12,
 								}}
 							>
 								{isPasswordShown == false ? (
-									<Ionicons
-										name="eye-off"
-										size={24}
-										color={COLORS.grey}
-									/>
+									<Ionicons name="eye-off" size={24} color={COLORS.grey} />
 								) : (
-									<Ionicons
-										name="eye"
-										size={24}
-										color={COLORS.grey}
-									/>
+									<Ionicons name="eye" size={24} color={COLORS.grey} />
 								)}
 							</TouchableOpacity>
 						</View>
@@ -236,9 +219,7 @@ const Signup = ({ navigation }) => {
 							}}
 						>
 							<TextInput
-								onChangeText={(confirmPassword) =>
-									setConfirmPassword(confirmPassword)
-								}
+								onChangeText={(confirmPassword) => setConfirmPassword(confirmPassword)}
 								placeholder="Confirm Password"
 								placeholderTextColor={COLORS.textcolor}
 								secureTextEntry={isPasswordShown}
@@ -249,51 +230,27 @@ const Signup = ({ navigation }) => {
 							/>
 
 							<TouchableOpacity
-								onPress={() =>
-									setIsPasswordShown(!isPasswordShown)
-								}
+								onPress={() => setIsPasswordShown(!isPasswordShown)}
 								style={{
 									position: "absolute",
 									right: 12,
 								}}
 							>
 								{isPasswordShown == false ? (
-									<Ionicons
-										name="eye-off"
-										size={24}
-										color={COLORS.grey}
-									/>
+									<Ionicons name="eye-off" size={24} color={COLORS.grey} />
 								) : (
-									<Ionicons
-										name="eye"
-										size={24}
-										color={COLORS.grey}
-									/>
+									<Ionicons name="eye" size={24} color={COLORS.grey} />
 								)}
 							</TouchableOpacity>
 						</View>
 					</View>
 
-					<View
-						style={{
-							flexDirection: "row",
-							marginLeft: 10,
-							marginTop: 10,
-						}}
-					>
+					<View style={{ flexDirection: "row", marginLeft: 10, marginTop: 10 }}>
 						<Text>• At least 8 characters</Text>
 					</View>
 
-					<View
-						style={{
-							flexDirection: "row",
-							marginLeft: 10,
-						}}
-					>
-						<Text>
-							• Use a mix of letters, number and special
-							characters (ex: @,#,...)
-						</Text>
+					<View style={{ flexDirection: "row", marginLeft: 10 }}>
+						<Text>• Use a mix of letters, number and special characters (ex: @,#,...)</Text>
 					</View>
 
 					<Button
@@ -308,51 +265,20 @@ const Signup = ({ navigation }) => {
 						}}
 					/>
 
-					<View
-						style={{
-							flexDirection: "row",
-						}}
-					>
-						<Text style={{ color: "#83829A" }}>
-							You already have an account{" "}
-						</Text>
+					<View style={{ flexDirection: "row" }}>
+						<Text style={{ color: "#83829A" }}>You already have an account </Text>
 						<Pressable onPress={() => navigation.navigate("Login")}>
 							<Text style={{ color: "#FF7754" }}> Sign In</Text>
 						</Pressable>
 					</View>
 
-					<View
-						style={{
-							flexDirection: "row",
-							alignItems: "center",
-							marginVertical: 20,
-						}}
-					>
-						<View
-							style={{
-								flex: 1,
-								height: 1,
-								backgroundColor: COLORS.grey,
-								marginHorizontal: 10,
-							}}
-						/>
+					<View style={{ flexDirection: "row", alignItems: "center", marginVertical: 20 }}>
+						<View style={{ flex: 1, height: 1, backgroundColor: COLORS.grey, marginHorizontal: 10 }} />
 						<Text style={{ fontSize: 14 }}>Or Sign up with</Text>
-						<View
-							style={{
-								flex: 1,
-								height: 1,
-								backgroundColor: COLORS.grey,
-								marginHorizontal: 10,
-							}}
-						/>
+						<View style={{ flex: 1, height: 1, backgroundColor: COLORS.grey, marginHorizontal: 10 }} />
 					</View>
 
-					<View
-						style={{
-							flexDirection: "row",
-							justifyContent: "center",
-						}}
-					>
+					<View style={{ flexDirection: "row", justifyContent: "center" }}>
 						<TouchableOpacity
 							onPress={() => console.log("Pressed")}
 							style={{
@@ -408,27 +334,12 @@ const Signup = ({ navigation }) => {
 						</TouchableOpacity>
 					</View>
 
-					<View
-						style={{
-							flexDirection: "row",
-							justifyContent: "center",
-							marginTop: 12,
-						}}
-					>
-						<Text style={{ fontSize: 16, color: COLORS.black }}>
-							By continuing your confirm that you agree
-						</Text>
+					<View style={{ flexDirection: "row", justifyContent: "center", marginTop: 12 }}>
+						<Text style={{ fontSize: 16, color: COLORS.black }}>By continuing your confirm that you agree</Text>
 					</View>
 
-					<View
-						style={{
-							flexDirection: "row",
-							justifyContent: "center",
-						}}
-					>
-						<Text style={{ fontSize: 16, color: COLORS.black }}>
-							with our
-						</Text>
+					<View style={{ flexDirection: "row", justifyContent: "center" }}>
+						<Text style={{ fontSize: 16, color: COLORS.black }}>with our</Text>
 
 						<Text
 							style={{

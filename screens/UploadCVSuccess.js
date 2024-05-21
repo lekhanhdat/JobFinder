@@ -9,81 +9,38 @@ import {
 } from "react-native";
 import BackButton from "../buttons/BackButton";
 import COLORS from "../constants/colors";
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
-const UploadCVSuccess = ({ navigation }) => {
-	return (
-		<SafeAreaView>
-			<ScrollView>
-				<View style={{ marginTop: 20 }}>
-					<BackButton></BackButton>
-					<View
-						style={{
-							justifyContent: "center",
-							alignItems: "center",
-							marginTop: 30,
-						}}
-					>
-						<Image
-							style={styles.avatar}
-							source={require("../assets/ig.png")}
-						></Image>
-					</View>
-					<View
-						style={{
-							justifyContent: "center",
-							alignItems: "center",
-							marginTop: 15,
-						}}
-					>
-						<Text
-							style={{
-								marginBottom: 3,
-								fontWeight: 500,
-								fontSize: 18,
-							}}
-						>
-							Product Designer
-						</Text>
-						<Text style={{ marginBottom: 3 }}>
-							Full time / Hai Chau, Da Nang
-						</Text>
-						<Text>Salary: $5k</Text>
-					</View>
-				</View>
-				<View style={styles.upload_container}>
-					<Text style={{ color: COLORS.maugach }}>
-						Show CV in here
-					</Text>
-				</View>
-				<View
-					style={{
-						justifyContent: "center",
-						alignItems: "center",
-						marginTop: 10,
-					}}
-				>
-					<Image
-						style={{ height: 250, width: 250 }}
-						source={require("../assets/success_cv.png")}
-					></Image>
-				</View>
-
-				<View
-					style={{ justifyContent: "center", alignItems: "center" }}
-				>
-					<Text
-						style={{
-							fontWeight: 800,
-							fontSize: 20,
-							marginBottom: 5,
-						}}
-					>
-						Successful
-					</Text>
-					<Text style={{ fontSize: 18, marginBottom: 30 }}>
-						Congratulations, your CV has been sent
-					</Text>
-				</View>
+const UploadCVSuccess = ({navigation, route}) => {
+    const { company, cvFile } = route.params;
+    return(
+        <SafeAreaView>
+            <ScrollView>
+                <View style={{marginTop:20}}>
+                    <BackButton></BackButton>
+                    <View style={{justifyContent: 'center', alignItems: 'center', marginTop:30}}>
+                        <Image style={styles.avatar} source={ require("../assets/ig.png") }></Image>
+                    </View>
+                    <View style={{justifyContent: 'center', alignItems: 'center', marginTop:15}}>
+                        <Text style={{marginBottom:3, fontWeight: 500, fontSize:18}}>{company.job}</Text>
+                        <Text style={{marginBottom:3}}>{company.description}</Text>
+                        <Text>{company.name}</Text>
+                    </View>
+                </View>
+                <View style={styles.upload_container}>
+                    <View style={{flexDirection:'row', alignItems:'center'}}>
+                        <MaterialCommunityIcons name="file-pdf-box" size={70} color="#b22222" />
+                        <Text>{cvFile.name}</Text>
+                    </View>
+                </View>
+                <View style={{justifyContent: 'center', alignItems: 'center'}}>
+                    <Image style={{height:200, width:200}} source={require("../assets/success_cv.png")}></Image>
+                </View>
+        
+                <View style={{justifyContent: 'center', alignItems: 'center'}}>
+                    <Text style={{fontWeight: 800, fontSize: 20, marginBottom: 5}}>Successful</Text>
+                    <Text style={{fontSize: 18, marginBottom: 30}}>Congratulations, your CV has been sent</Text>
+                </View>
 
 				<TouchableOpacity
 					style={{

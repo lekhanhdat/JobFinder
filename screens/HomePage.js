@@ -66,18 +66,6 @@ const renderCompanyCard = ({ item }) => {
 	);
 };
 
-const Nearby_Job = ({ company, jobname, describe }) => {
-	return (
-		<View style={styles.nearby_job_container}>
-			<Image source={require("../assets/ig.png")} style={styles.logo} />
-			<View style={styles.textContainer}>
-				<Text style={styles.company}>{company}</Text>
-				<Text style={styles.jobname}>{jobname}</Text>
-				<Text style={styles.describe}>{describe}</Text>
-			</View>
-		</View>
-	);
-};
 
 // Change Password
 const changePassword = () => {

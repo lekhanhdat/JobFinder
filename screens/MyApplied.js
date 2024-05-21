@@ -20,22 +20,22 @@ const data = [
 
 const windowHeight = Dimensions.get('window').height;
 
-const ListItem = ({company, jobname, describe, time}) => {
-  return(
-      <View style={styles.whiteBox}>
-        <Image source={require("../assets/ig.png")} style={styles.logo} />
-        <View style={styles.textContainer}>
-          <Text style={styles.company}>{company}</Text>
-          <Text style={styles.jobname}>{jobname}</Text>
-          <Text style={styles.describe}>{describe}</Text>
-        </View>
-        <View>          
-          <AntDesign name="closecircle" size={24} color="#ff7754" />
-          <Text style={styles.time}>{time}</Text>
-        </View>
+const JobCard = ({ job, onRemove }) => (
+  <View style={styles.whiteBox}>
+      <Image source={require("../assets/ig.png")} style={styles.logo} />
+      <View style={styles.textContainer}>
+          <Text style={styles.company}>{job.company}</Text>
+          <Text style={styles.jobname}>{job.jobname}</Text>
+          <Text style={styles.describe}>{job.describe}</Text>
       </View>
-  );
-};
+      <View style={styles.actionContainer}>
+          <TouchableOpacity onPress={onRemove}>
+              <AntDesign name="closecircle" size={24} color="#ff7754" />
+          </TouchableOpacity>
+          <Text style={styles.time}>{job.time}</Text>
+      </View>
+  </View>
+);
 
 const MyApplied = ({ searchTerm, setSearchTerm, handleClick }) => {
   const [activeJobType, setActiveJobType] = useState("Full-time");
@@ -54,6 +54,20 @@ const MyApplied = ({ searchTerm, setSearchTerm, handleClick }) => {
 
   const [selectedJob, setSelectedJob] = useState('Choose Job');
 
+  const [jobs, setJobs] = useState([
+    { id: 1, company: 'Instagram', jobname: 'UI/UX Designer', describe: 'Full time - $3k', time: '1h ago' },
+    { id: 2, company: 'Instagram', jobname: 'UI/UX Designer', describe: 'Full time - $5k', time: '1h ago' },
+    { id: 3, company: 'Instagram', jobname: 'UI/UX Designer', describe: 'Full time - $6k', time: '1h ago' },
+    { id: 4, company: 'Instagram', jobname: 'UI/UX Designer', describe: 'Full time - $7k', time: '1h ago' },
+    { id: 5, company: 'Instagram', jobname: 'UI/UX Designer', describe: 'Full time - $38k', time: '1h ago' },
+
+    // Thêm các job khác nếu cần
+  ]);
+
+  const removeJob = (id) => {
+      setJobs(jobs.filter(job => job.id !== id));
+  };
+
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <BackButton></BackButton>
@@ -70,11 +84,9 @@ const MyApplied = ({ searchTerm, setSearchTerm, handleClick }) => {
 
 
         <View style={styles.container}>
-          <ListItem company = 'Instagram' jobname = 'UI/UX Designer' describe = 'Full time - $3k' time = '1h ago' />
-          <ListItem company = 'Instagram' jobname = 'Tech Leader' describe = 'Full time - $8k' time = '2h ago' />
-          <ListItem company = 'Instagram' jobname = 'Full-stack Developer' describe = 'Full time - $20k' time = '4h ago' />
-          <ListItem company = 'Instagram' jobname = 'Senior Developer' describe = 'Full time - $5k' time = '8h ago' />
-          <ListItem company = 'Instagram' jobname = 'Internship' describe = 'Part time - $1k' time = '9h ago' />
+          {jobs.map(job => (
+            <JobCard key={job.id} job={job} onRemove={() => removeJob(job.id)} />
+          ))}
         </View>
       </ScrollView>
 
