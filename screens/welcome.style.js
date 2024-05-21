@@ -1,6 +1,7 @@
 import { StyleSheet } from "react-native";
 
 import { COLORS, FONT, SIZES } from "../constants";
+import COLOR from "../constants/colors";
 
 const styles = StyleSheet.create({
   container: {
@@ -12,6 +13,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between', // Canh giữa hai hình ảnh
     alignItems: 'center', // Canh chỉnh theo trục dọc
     paddingHorizontal: 20, // Thêm padding nếu cần thiết
+    marginVertical: 20,
   },
   menu: {
     marginTop: 50,  
@@ -21,8 +23,6 @@ const styles = StyleSheet.create({
     // borderRadius: 10, 
   },
   avatar: {
-    marginTop: 60,  
-    marginBottom: 20, 
     width: 60,
     height: 60,
     borderRadius: 20, // Để bo tròn hình ảnh
@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
   userName: {
     // fontFamily: FONT.regular,
     fontSize: SIZES.large,
-    color: COLORS.secondary,
+    color: "#ff6347",
     fontWeight: 'bold',
   },
   welcomeMessage: {
@@ -172,8 +172,8 @@ const styles = StyleSheet.create({
     padding:10,
   },
   logo: {
-    width: 70,
-    height: 70,
+    width: 50,
+    height: 50,
     marginRight: 20,
     borderRadius: 50,
   },

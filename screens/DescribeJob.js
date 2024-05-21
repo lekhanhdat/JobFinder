@@ -5,13 +5,14 @@ import { StyleSheet, Text, View, Image,TextInput, ScrollView, TouchableOpacity }
 import COLORS from "../constants/colors";
 import { AntDesign } from '@expo/vector-icons';
 
-const DescribeJob = ({navigation}) => {
+const DescribeJob = ({navigation, route}) => {
     const [selectedTab, setSelectedTab] = useState("Company");
 
     const handleTabPress = (tab) => {
         setSelectedTab(tab);
     };
 
+    const { company } = route.params;
     return(
     <SafeAreaView>
         <BackButton></BackButton>
@@ -19,9 +20,9 @@ const DescribeJob = ({navigation}) => {
             <Image style={styles.avatar} source={ require("../assets/ig.png") }></Image>
         </View>
         <View style={{justifyContent: 'center', alignItems: 'center', marginTop:15}}>
-            <Text style={{marginBottom:3, fontWeight: 800, fontSize:18}}>Product Designer</Text>
-            <Text style={{marginBottom:3}}>Full time / Hai Chau, Da Nang</Text>
-            <Text>Salary: $5k</Text>
+            <Text style={{marginBottom:3, fontWeight: 800, fontSize:18}}>{company.job}</Text>
+            <Text style={{marginBottom:3}}>{company.description}</Text>
+            <Text>{company.name}</Text>
         </View>
         <View style={{flexDirection:'row', marginTop:20, marginLeft:30}}>
             <TouchableOpacity onPress={() => handleTabPress('Company')}>
@@ -38,7 +39,7 @@ const DescribeJob = ({navigation}) => {
 
         {selectedTab === 'Company' && (
             <View style={[styles.content, selectedTab === 'Company' && styles.contentVisible]}>
-                <Text>Instagram is an American photo and video sharing social networking service created by Kevin Systrom and Mike Krieger. In April 2012, Facebook acquired the service for approximately $1 billion in cash and stock. The app allows users to upload media that can be edited with filters and sorted by hashtags and geotagging. Posts can be shared publicly or with pre-approved followers. Users can browse other users' content by tags and location and see trending content. Users can like photos and follow other users to add their content to their personal feed.</Text>
+                <Text>Instagram is an American photo and video sharing social networking service created by Kevin Systrom and Mike Krieger. In April 2012, Facebook acquired the service for approximately $1 billion in cash and stock. The app allows users to upload media that can be edited with filters and sorted by hashtags and geotagging. Posts can be shared publicly or with pre-approved followers. Users can browse other users content by tags and location and see trending content. Users can like photos and follow other users to add their content to their personal feed.</Text>
             </View>
         )}
 
@@ -54,7 +55,7 @@ const DescribeJob = ({navigation}) => {
             </View>
             <TouchableOpacity 
                 style={{backgroundColor:COLORS.maugach,marginLeft:10, borderRadius: 10, flex:1, justifyContent: 'center', alignItems: 'center'}}
-                onPress={() => navigation.navigate("UploadCV")}>
+                onPress={() => navigation.navigate("UploadCV", { company })}>
                 <Text style={{color:'#fff', fontSize: 18}}>Apply for jobs</Text>
             </TouchableOpacity>
         </View>

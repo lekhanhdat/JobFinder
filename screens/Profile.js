@@ -79,9 +79,9 @@ const Profile = () => {
         aspect: [1,1],
         quality: 1,
       });
+      }
       if (!result.canceled){
         await saveImage(result.assets[0].uri);
-      }
       }
     }catch (error){
       alert("Error uploading image: " + error.message);

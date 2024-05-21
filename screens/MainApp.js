@@ -106,9 +106,37 @@ const MainApp = () => {
 
         <Tab.Screen name="Search" component={SearchPage} />
         <Tab.Screen name="Favorite" component={SavedJob} />
-        <Tab.Screen name="Home" component={HomeStack} />
+        <Tab.Screen 
+          name="Home" 
+          component={HomeStack} 
+          listeners={({ navigation }) => ({
+            tabPress: e => {
+              // Prevent default action
+              e.preventDefault();
+              
+              // Reset the stack to the initial route
+              navigation.reset({
+                index: 0,
+                routes: [{ name: 'Home' }],
+              });
+            },
+          })}/>
         <Tab.Screen name="Notify" component={EmptyNotify} />
-        <Tab.Screen name="Profile" component={ProfileStack} />
+        <Tab.Screen 
+          name="Profile" 
+          component={ProfileStack} 
+          listeners={({ navigation }) => ({
+            tabPress: e => {
+              // Prevent default action
+              e.preventDefault();
+              
+              // Reset the stack to the initial route
+              navigation.reset({
+                index: 0,
+                routes: [{ name: 'Profile' }],
+              });
+            },
+          })}/>
       </Tab.Navigator>
     </NavigationContainer>
   );
