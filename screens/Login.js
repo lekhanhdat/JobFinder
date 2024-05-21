@@ -7,12 +7,13 @@ import {
 	TouchableOpacity,
 	Alert,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import COLORS from "../constants/colors";
 import { Ionicons } from "@expo/vector-icons";
 import Button from "../components/Button";
 import { firebase } from "../configFirebase";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Login = ({ navigation }) => {
 	const [isPasswordShown, setIsPasswordShown] = useState(true);
@@ -47,16 +48,56 @@ const Login = ({ navigation }) => {
 	const handleLogin = async () => {
 		if (validateInputs()) {
 			try {
-				// login success
+				// Đăng nhập thành công
 				await firebase
 					.auth()
 					.signInWithEmailAndPassword(email, password);
+
+				// Lưu thông tin người dùng vào AsyncStorage
+				await AsyncStorage.setItem("email", email);
+				await AsyncStorage.setItem("password", password);
+
 				setEmail("");
 				setPassword("");
+
+				// Tính toán thời gian sau 3 ngày (3 * 24 * 60 * 60 * 1000 milliseconds)
+				const threeDaysInMilliseconds = 3 * 24 * 60 * 60 * 1000;
+
+				// Gọi hàm xóa thông tin sau 30 giây
+				setTimeout(async () => {
+					await AsyncStorage.removeItem("email");
+					await AsyncStorage.removeItem("password");
+				}, threeDaysInMilliseconds);
 			} catch (error) {
 				Alert.alert("Login Failed", "Email or Password is incorrect");
 			}
 		}
+	};
+
+	// Trong useEffect hoặc componentDidMount
+	useEffect(() => {
+		const fetchStoredCredentials = async () => {
+			try {
+				const storedEmail = await AsyncStorage.getItem("email");
+				const storedPassword = await AsyncStorage.getItem("password");
+				if (storedEmail && storedPassword) {
+					setEmail(storedEmail);
+					setPassword(storedPassword);
+				}
+			} catch (error) {
+				console.error("Error fetching stored credentials: ", error);
+			}
+		};
+
+		fetchStoredCredentials();
+	}, []);
+
+	const handleEmailChange = (text) => {
+		setEmail(text);
+	};
+
+	const handlePasswordChange = (text) => {
+		setPassword(text);
 	};
 
 	return (
@@ -127,7 +168,7 @@ const Login = ({ navigation }) => {
 						}}
 					>
 						<TextInput
-							onChangeText={(email) => setEmail(email)}
+							onChangeText={handleEmailChange}
 							placeholder="Your email address"
 							placeholderTextColor={COLORS.textcolor}
 							keyboardType="email-address"
@@ -135,6 +176,7 @@ const Login = ({ navigation }) => {
 								width: "100%",
 								fontSize: 19,
 							}}
+							value={email}
 						/>
 					</View>
 				</View>
@@ -152,7 +194,7 @@ const Login = ({ navigation }) => {
 						}}
 					>
 						<TextInput
-							onChangeText={(password) => setPassword(password)}
+							onChangeText={handlePasswordChange}
 							placeholder="Your password"
 							placeholderTextColor={COLORS.textcolor}
 							secureTextEntry={isPasswordShown}
@@ -160,6 +202,7 @@ const Login = ({ navigation }) => {
 								width: "100%",
 								fontSize: 19,
 							}}
+							value={password}
 						/>
 
 						<TouchableOpacity
