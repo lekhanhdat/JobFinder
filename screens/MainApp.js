@@ -27,6 +27,7 @@ import Signup from './Signup';
 import ConfirmCode from './ConfirmCode';
 import ConfirmEmail from './ConfirmEmail';
 import ConfirmPassword from './ConfirmPassword';
+import Notification from './Notification';
 
 
 
@@ -107,7 +108,7 @@ const MainApp = () => {
         <Tab.Screen name="Search" component={SearchPage} />
         <Tab.Screen name="Favorite" component={SavedJob} />
         <Tab.Screen name="Home" component={HomeStack} />
-        <Tab.Screen name="Notify" component={EmptyNotify} />
+        <Tab.Screen name="Notify" component={Notification} />
         <Tab.Screen name="Profile" component={ProfileStack} />
       </Tab.Navigator>
     </NavigationContainer>

@@ -70,14 +70,22 @@ const SearchPage = ({ searchTerm, setSearchTerm, handleClick }) => {
             value={searchTerm}
             onChangeText={(text) => setSearchTerm(text)}
             placeholder="What are you looking for?"
+            onPress={toggleFilter}
           />
         </View>
         <View>
-          <TouchableOpacity style={styles.searchBtn} onPress={toggleFilter}>
-            <View style={styles.searchBtnImage}>
-              <Octicons name="filter" size={26} color="#fff" />
-            </View>
-          </TouchableOpacity>
+          
+          <TouchableOpacity
+            style={styles.searchBtn}
+            onPress={toggleFilter}
+          >
+            <Image
+              source={icons.search}
+              resizeMode="contain"
+              style={styles.searchBtnImage}
+            />
+				  </TouchableOpacity>
+
           <Modal
             animationType="slide"
             transparent={true}
